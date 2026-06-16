@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Felix Phan — Portfolio 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --burgundy:#6B1D1D;
+    --gold:#C9A96E;
+    --text-main:#1A1A1A;
+    --text-secondary:#666666;
+    --text-tertiary:#999999;
+    --line:#E0E0E0;
+  }
+
+  *{box-sizing:border-box;}
+
+  @page{ size:A4; margin:0; }
+
+  html,body{
+    margin:0; padding:0;
+    background:#FFFFFF;
+    color:var(--text-main);
+    font-family:'Inter',Arial,sans-serif;
+    font-size:11pt;
+    line-height:1.6;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+
+  h1,h2,h3,.serif{ font-family:'Playfair Display',Georgia,serif; font-weight:600; margin:0; }
+
+  p{ margin:0 0 10px 0; }
+  p:last-child{ margin-bottom:0; }
+
+  .page{
+    width:170mm;
+    margin:0 auto;
+    break-after:page;
+    position:relative;
+    padding-top:7mm; /* guards against a Chromium pagination quirk where an
+      element pushed onto a new page (break-inside:avoid) can render flush
+      against the top edge, overlapping the running header */
+  }
+  .page:last-child{ break-after:auto; }
+
+  .eyebrow{
+    font-family:'Inter',sans-serif;
+    font-size:9pt;
+    letter-spacing:2.2px;
+    text-transform:uppercase;
+    color:var(--text-tertiary);
+    font-weight:600;
+    margin-bottom:6mm;
+  }
+
+  hr.thin{
+    border:none;
+    border-top:0.5px solid var(--line);
+    margin:6mm 0;
+  }
+  hr.thin.tight{ margin:3mm 0; }
+
+  .pull-quote{
+    font-family:'Playfair Display',serif;
+    font-style:italic;
+    color:var(--burgundy);
+  }
+
+  .quote-mark{ font-style:normal; }
+
+  /* ---------- Page 1 — Cover ---------- */
+  .cover{ height:250mm; display:flex; flex-direction:column; }
+  .cover-top{ display:flex; justify-content:space-between; align-items:flex-start; }
+  .cover-kicker{
+    font-size:9.5pt; letter-spacing:2.5px; text-transform:uppercase;
+    color:var(--text-secondary); font-weight:600;
+  }
+  .cover-name-block{ flex:1; display:flex; flex-direction:column; justify-content:center; }
+  .cover-name{ font-size:48pt; line-height:1.05; font-weight:600; color:var(--text-main); }
+  .cover-role{
+    font-family:'Playfair Display',serif; font-style:italic; font-size:16pt;
+    color:var(--burgundy); margin-top:6mm;
+  }
+  .cover-bottom{ }
+  .cover-contact{
+    display:flex; gap:14px; flex-wrap:wrap; font-size:10pt; color:var(--text-secondary);
+    border-top:0.5px solid var(--line); padding-top:5mm; margin-bottom:3mm;
+  }
+  .cover-contact span:not(:last-child)::after{ content:"   |   "; color:var(--line); }
+  .cover-date{ font-size:9.5pt; color:var(--text-tertiary); }
+  .headshot-ph{
+    width:34mm; height:42mm; border:1px dashed var(--gold); background:#FAF8F3;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:3mm; border-radius:2px; flex-shrink:0;
+  }
+  .headshot-ph .ph-icon{ font-size:16pt; color:var(--gold); margin-bottom:2mm; }
+  .headshot-ph .ph-text{ font-size:7pt; color:var(--text-secondary); line-height:1.4; }
+
+  /* ---------- Image placeholder component ---------- */
+  .img-ph{
+    border:1px dashed var(--gold);
+    background:#FAF8F3;
+    border-radius:2px;
+    padding:4mm;
+    text-align:center;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    margin:4mm 0;
+  }
+  .img-ph .ph-icon{ font-size:16pt; color:var(--gold); margin-bottom:1.5mm; }
+  .img-ph .ph-label{
+    font-size:8pt; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-tertiary);
+    font-weight:600; margin-bottom:1.5mm;
+  }
+  .img-ph .ph-desc{ font-size:9.5pt; color:var(--text-secondary); line-height:1.45; max-width:140mm; }
+  .img-ph--wide{ height:58mm; }
+  .img-ph--med{ height:36mm; }
+  .img-ph--small{ height:24mm; }
+
+  /* ---------- Section heading blocks ---------- */
+  .heading-xl{ font-size:32pt; line-height:1.12; margin-bottom:5mm; }
+  .heading-lg{ font-size:28pt; line-height:1.15; margin-bottom:4mm; }
+  .heading-md{ font-size:18pt; margin-bottom:6mm; }
+  .subtitle{
+    font-family:'Playfair Display',serif; font-style:italic; font-size:13pt;
+    color:var(--text-secondary); margin-bottom:6mm;
+  }
+  .body-text p{ font-size:11pt; }
+
+  /* ---------- Tag grid ---------- */
+  .tag-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:3mm; margin-top:8mm;
+  }
+  .tag-box{
+    border:1px solid var(--line); border-radius:4px; padding:4px 12px;
+    font-size:9pt; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-secondary);
+    text-align:center;
+  }
+
+  /* ---------- Numbered steps ---------- */
+  .step{ display:flex; gap:6mm; margin-bottom:7mm; break-inside:avoid; }
+  .step-num{
+    font-family:'Playfair Display',serif; font-size:20pt; color:var(--gold);
+    width:16mm; flex-shrink:0; font-weight:600;
+  }
+  .step-content h3{
+    font-family:'Inter',sans-serif; font-size:11.5pt; font-weight:700;
+    letter-spacing:0.5px; text-transform:uppercase; color:var(--text-main); margin-bottom:2mm;
+  }
+  .step-content p{ font-size:10.5pt; color:var(--text-secondary); line-height:1.65; }
+
+  /* ---------- Project cards ---------- */
+  .card{
+    border-top:2px solid var(--burgundy); padding-top:4mm; margin-bottom:5mm; break-inside:avoid;
+  }
+  .card-eyebrow{
+    font-size:9pt; letter-spacing:1.8px; text-transform:uppercase; color:var(--text-secondary); font-weight:600;
+  }
+  hr.card-rule{ border:none; border-top:0.5px solid var(--line); margin:2mm 0 3mm 0; }
+  .card-title{ font-size:14pt; font-weight:700; color:var(--text-main); margin-bottom:1mm; }
+  .card-meta{ font-size:10pt; color:var(--text-secondary); margin-bottom:3mm; }
+  .card-body{ font-size:11pt; color:var(--text-main); }
+  .card-media{ margin-top:4mm; }
+
+  /* ---------- Intro box (page 2) ---------- */
+  .intro-box{
+    border-left:3px solid var(--burgundy); padding:4mm 6mm; margin:8mm 0;
+    background:#FBF8F8; font-size:10.5pt; color:var(--text-secondary); font-style:italic;
+  }
+
+  /* ---------- TOC ---------- */
+  .toc{ margin-top:10mm; }
+  .toc-title{
+    font-size:9pt; letter-spacing:2px; text-transform:uppercase; color:var(--text-tertiary);
+    font-weight:600; margin-bottom:5mm;
+  }
+  .toc-item{ display:flex; align-items:baseline; gap:8px; margin-bottom:4mm; }
+  .toc-marker{ font-family:'Playfair Display',serif; color:var(--burgundy); width:7mm; flex-shrink:0; font-weight:600; }
+  .toc-label{ flex-shrink:0; }
+  .toc-label .toc-main{ font-weight:600; font-size:10.5pt; }
+  .toc-label .toc-sub{ font-size:9pt; color:var(--text-secondary); font-style:italic; }
+  .toc-dots{ flex:1; border-bottom:1px dotted var(--text-tertiary); height:0; margin-bottom:2px; }
+  .toc-page{ font-size:10.5pt; color:var(--text-secondary); flex-shrink:0; }
+
+  /* ---------- Closing page ---------- */
+  .closing{ height:250mm; display:flex; flex-direction:column; justify-content:center; }
+  .closing-heading{ font-size:36pt; line-height:1.15; margin:6mm 0 8mm 0; }
+  .contact-list{ margin-top:10mm; }
+  .contact-row{ display:flex; gap:8mm; padding:3mm 0; border-bottom:0.5px solid var(--line); }
+  .contact-row:first-child{ border-top:0.5px solid var(--line); }
+  .contact-label{
+    width:28mm; flex-shrink:0; font-size:9pt; letter-spacing:1.5px; color:var(--text-tertiary); font-weight:600;
+  }
+  .contact-value{ font-size:11pt; color:var(--text-main); }
+  .contact-value a{ color:var(--text-main); text-decoration:none; }
+  .closing-note{ font-size:9pt; color:var(--text-tertiary); margin-top:10mm; }
+
+</style>
+</head>
+<body>
+
+<!-- ================= PAGE 1 — COVER ================= -->
+<section class="page cover">
+  <div class="cover-top">
+    <div class="cover-kicker">Portfolio · Dành cho vị trí Biên tập viên</div>
+    <div class="headshot-ph">
+      <div class="ph-icon">&#128247;</div>
+      <div class="ph-text">ẢNH CHÂN DUNG<br>(tùy chọn)<br>Vertical, professional,<br>background đơn giản</div>
+    </div>
+  </div>
+
+  <div class="cover-name-block">
+    <h1 class="cover-name">Felix<br>Phan</h1>
+    <div class="cover-role">Story Architect</div>
+  </div>
+
+  <div class="cover-bottom">
+    <div class="cover-contact">
+      <span>Email: felixphan.contact@gmail.com</span>
+      <span>Phone: +84 936 647 704</span>
+      <span>LinkedIn: linkedin.com/in/felixphan</span>
+    </div>
+    <div class="cover-date">Hồ Chí Minh City · Tháng 6, 2026</div>
+  </div>
+</section>
+
+<!-- ================= PAGE 2 — OPENING ================= -->
+<section class="page">
+  <p class="pull-quote" style="font-size:24pt; line-height:1.4; margin-bottom:8mm;">
+    <span class="quote-mark">&#8220;</span>Một tập talkshow thường được nhớ không phải vì câu hỏi hay — mà vì khoảnh khắc khách mời nói điều họ chưa từng nói ở đâu trước đó. Khoảnh khắc đó không ngẫu nhiên. Nó được thiết kế.<span class="quote-mark">&#8221;</span>
+  </p>
+
+  <div class="body-text" style="line-height:1.8;">
+    <p>Tôi là Felix Phan — ứng viên song bằng Truyền thông (RMIT) và Quản trị Kinh doanh (NEU), sẵn sàng làm việc full-time.</p>
+    <p>Tôi tự gọi mình là Story Architect — không phải vì thích danh hiệu đẹp, mà vì đó là cách tôi tiếp cận mọi kịch bản: không bắt đầu từ câu hỏi, mà bắt đầu từ tình huống. Ai là người này thật sự? Điều gì sẽ khiến họ không thể không nói thật? Format nào sẽ dẫn người xem đến khoảnh khắc đó một cách tự nhiên nhất?</p>
+    <p>Tôi có kinh nghiệm viết kịch bản đa định dạng cho hơn 10 thương hiệu (VinFast, MAGGI, Hapacol, PNJ, BUV), từng đạt Giải Nhất cuộc thi phim ngắn với vai trò biên kịch kiêm đạo diễn, và đã điều phối sản xuất trực tiếp trên trường quay cho các campaign thương mại.</p>
+  </div>
+
+  <div class="intro-box">
+    Portfolio này được xây riêng cho vị trí Biên tập viên tại Zeit Media. Mỗi trang được thiết kế để trả lời câu hỏi: "Người này có thể phát triển kịch bản talkshow từ ý tưởng đến on-air không?"
+  </div>
+
+  <div class="toc">
+    <div class="toc-title">Mục lục</div>
+
+    <div class="toc-item">
+      <div class="toc-marker">&#10054;</div>
+      <div class="toc-label"><span class="toc-main">Bếp Nhà Haha Gặp Bếp Cung Đình</span> — <span class="toc-sub">Dự án sáng tạo cá nhân</span></div>
+      <div class="toc-dots"></div>
+      <div class="toc-page">03</div>
+    </div>
+
+    <div class="toc-item">
+      <div class="toc-marker">I</div>
+      <div class="toc-label"><span class="toc-main">Biên kịch đa định dạng</span> — <span class="toc-sub">TVC · Phim ngắn · Podcast</span></div>
+      <div class="toc-dots"></div>
+      <div class="toc-page">06</div>
+    </div>
+
+    <div class="toc-item">
+      <div class="toc-marker">II</div>
+      <div class="toc-label"><span class="toc-main">Nghiên cứu văn hóa & Insight khán giả</span></div>
+      <div class="toc-dots"></div>
+      <div class="toc-page">08</div>
+    </div>
+
+    <div class="toc-item">
+      <div class="toc-marker">III</div>
+      <div class="toc-label"><span class="toc-main">Kinh nghiệm sản xuất thực tế</span></div>
+      <div class="toc-dots"></div>
+      <div class="toc-page">10</div>
+    </div>
+
+    <div class="toc-item">
+      <div class="toc-marker">&nbsp;</div>
+      <div class="toc-label"><span class="toc-main">Kết nối với Felix Phan</span></div>
+      <div class="toc-dots"></div>
+      <div class="toc-page">12</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PAGE 3 — PROJECT INTRO ================= -->
+<section class="page">
+  <div class="eyebrow">Dự án sáng tạo cá nhân · Episode Treatment</div>
+  <h2 class="heading-xl">Bếp Nhà Haha<br>Gặp Bếp Cung Đình</h2>
+  <p class="subtitle">Treatment đề xuất cho một tập giả tưởng trong chặng Huế của Quán Nhà Haha</p>
+
+  <div class="body-text">
+    <p>Để chứng minh quy trình làm việc của mình với nội dung talkshow, tôi đã tự chọn một show đang phát sóng — Quán Nhà Haha — và phát triển đầy đủ treatment cho một tập giả tưởng. Không phải bài tập học thuật. Đây là cách tôi tiếp cận mọi kịch bản: nghiên cứu trước, thiết kế tình huống, rồi viết.</p>
+    <p>Ý tưởng lõi: Đưa dàn cast Quán Nhà Haha vào một bữa tối Nhã nhạc cung đình trên thuyền Rồng sông Hương — nơi truyền thống bông hoa cài tiền được tái thiết kế thành "hoa số hóa" qua VCB DigiBank. Mỗi tình huống trong tập đều xoay quanh một câu hỏi: "Khi xã hội thay đổi, một nghi thức đẹp sẽ đi về đâu?"</p>
+  </div>
+
+  <div class="img-ph img-ph--wide">
+    <div class="ph-icon">&#128247;</div>
+    <div class="ph-label">Hình minh họa cần chèn</div>
+    <div class="ph-desc">Visual concept chủ đạo của tập: mockup/ảnh dựng bữa tối Nhã nhạc trên thuyền Rồng sông Hương (ánh đèn vàng, không gian hoàng cung, dàn cast Quán Nhà Haha) — dùng làm hình hero cho treatment.</div>
+  </div>
+
+  <div class="tag-grid">
+    <div class="tag-box">Situation Design</div>
+    <div class="tag-box">Unscripted Format</div>
+    <div class="tag-box">Sponsor Integration</div>
+    <div class="tag-box">Văn hóa Việt</div>
+  </div>
+</section>
+
+<!-- ================= PAGE 4 — PROCESS BREAKDOWN ================= -->
+<section class="page">
+  <h2 class="heading-md">Quy trình phát triển treatment</h2>
+
+  <div class="img-ph img-ph--small">
+    <div class="ph-icon">&#128247;</div>
+    <div class="ph-label">Hình minh họa cần chèn</div>
+    <div class="ph-desc">Moodboard nghiên cứu: ẩm thực cung đình Huế, nhạc cụ Nhã nhạc, kiến trúc thuyền Rồng (3-4 ảnh tham khảo ghép lại).</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">01</div>
+    <div class="step-content">
+      <h3>Nghiên cứu &amp; Insight</h3>
+      <p>Phân tích DNA chương trình Quán Nhà Haha: format ăn uống + talkshow, tông giọng hài hước nhưng chân thật, đối tượng khán giả 18-35. Nghiên cứu ẩm thực cung đình Huế và vai trò của Nhã nhạc như di sản văn hóa phi vật thể UNESCO. Câu hỏi dẫn dắt: làm sao để di sản không chỉ là backdrop mà trở thành chất xúc tác cho câu chuyện?</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">02</div>
+    <div class="step-content">
+      <h3>Concept &amp; Format Design</h3>
+      <p>"Bếp Cung Đình" — dàn cast không chỉ nấu ăn mà phải trải nghiệm toàn bộ nghi thức: từ cách sắp mâm theo chuẩn hoàng cung, đến việc nghe Nhã nhạc live trên thuyền Rồng. Mỗi hoạt động được thiết kế để tạo phản ứng tự nhiên — hài hước, bất ngờ, hoặc cảm xúc — không cần scripted dialog.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">03</div>
+    <div class="step-content">
+      <h3>Outline &amp; Flow chương trình</h3>
+      <p>Kịch bản ba hồi: Hồi 1 — Arrival &amp; Discovery (cast lên thuyền, khám phá bếp cung đình); Hồi 2 — Challenge &amp; Chaos (nấu ăn theo chuẩn hoàng gia với nguyên liệu xa lạ); Hồi 3 — Ritual &amp; Reflection (bữa tối Nhã nhạc, tặng bông hoa cài tiền số hóa). Mỗi hồi có turning point rõ ràng.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">04</div>
+    <div class="step-content">
+      <h3>Cast Breakdown &amp; Bộ câu hỏi</h3>
+      <p>Phân tích vai trò từng thành viên cast dựa trên dynamic nhóm: ai sẽ phản ứng mạnh với trải nghiệm mới, ai sẽ tạo comic relief, ai sẽ mang đến khoảnh khắc sâu lắng. Bộ câu hỏi dẫn dắt được thiết kế theo tầng — từ câu hỏi nhẹ (ấn tượng đầu tiên) đến câu hỏi sâu (ký ức về gia đình, về truyền thống).</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">05</div>
+    <div class="step-content">
+      <h3>Tích hợp Sponsor &amp; Clip-able Moments</h3>
+      <p>VCB DigiBank được gắn vào tự nhiên qua chi tiết "hoa số hóa" — một điểm chạm giữa kinh tế di sản, giao thoa giữa gìn giữ truyền thống với công cụ thanh toán số hiện đại. Xác định 3-4 khoảnh khắc có thể cắt thành clips ngắn cho TikTok/Reels: reaction khi thấy bếp cung đình, khoảnh khắc tặng hoa, và cuộc trò chuyện trên thuyền đêm.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PAGE 5 — PROJECT CONCLUSION ================= -->
+<section class="page">
+  <p class="pull-quote" style="font-size:18pt; line-height:1.5; margin-bottom:8mm;">
+    <span class="quote-mark">&#8220;</span>Tôi tin một episode treatment tốt không chỉ là outline — nó là bản thiết kế trải nghiệm. Mọi tình huống được đặt ra để khán giả cảm nhận điều gì đó thật, ngay cả khi format là unscripted.<span class="quote-mark">&#8221;</span>
+  </p>
+
+  <div class="body-text">
+    <p>Dự án này thể hiện cách tôi sẽ tiếp cận mỗi tập talkshow tại Zeit: bắt đầu từ nghiên cứu, thiết kế tình huống trước khi viết script, tích hợp sponsor một cách hữu cơ, và luôn tư duy về clip-able moments cho đa nền tảng.</p>
+  </div>
+
+  <div class="img-ph img-ph--med">
+    <div class="ph-icon">&#128247;</div>
+    <div class="ph-label">Hình minh họa cần chèn</div>
+    <div class="ph-desc">Visual khoảnh khắc cao điểm của tập: cảnh tặng "hoa số hóa" trên thuyền Rồng về đêm (mockup/ảnh dựng), hoặc trích trang treatment hoàn chỉnh.</div>
+  </div>
+
+  <div class="body-text">
+    <p style="font-style:italic; color:var(--text-secondary);">Treatment đầy đủ với hình ảnh minh họa nằm trong Story Architect Portfolio đính kèm — trang 04-05.</p>
+  </div>
+</section>
+
+<!-- ================= PAGE 6 — MULTI-FORMAT WRITING I ================= -->
+<section class="page">
+  <div class="eyebrow">Thế mạnh I</div>
+  <h2 class="heading-lg">Biên kịch đa định dạng</h2>
+  <p class="subtitle">Mỗi format đòi hỏi một framework kể chuyện khác — đây là khả năng thích ứng của tôi.</p>
+
+  <div class="body-text" style="margin-bottom:6mm;">
+    <p>Ai cũng có thể đề xuất ý tưởng, nhưng liệu họ có thể biến ý tưởng thành mạch truyện hoàn chỉnh? Từ TVC 30 giây cho thương hiệu lớn, đến phim ngắn độc lập, đến podcast long-form — mỗi loại hình đòi hỏi cách kể khác nhau. Những dự án dưới đây chứng minh cho khả năng đó.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-eyebrow">TVC Storyboard · Thương hiệu</div>
+    <hr class="card-rule">
+    <div class="card-title">VinFast · MAGGI Tết 2026 · Hapacol · BUV</div>
+    <div class="card-meta">Script Writer · Storyboard · 2024-2025</div>
+    <p class="card-body">Viết kịch bản và minh họa storyboard TVC cho 4 chiến dịch thương mại, vượt qua 4 vòng chỉnh sửa từ brief đến storyboard hoàn thiện. Mỗi TVC yêu cầu tóm gọn câu chuyện thương hiệu trong 30 giây — kỹ năng nén thông điệp này trực tiếp áp dụng được khi viết segment hooks cho talkshow.</p>
+    <div class="card-media">
+      <div class="img-ph img-ph--small">
+        <div class="ph-icon">&#128247;</div>
+        <div class="ph-label">Hình minh họa cần chèn</div>
+        <div class="ph-desc">Frame storyboard hoặc ảnh chụp màn hình TVC đã sản xuất (VinFast / MAGGI / Hapacol / BUV).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-eyebrow">Phim ngắn · Giải Nhất</div>
+    <hr class="card-rule">
+    <div class="card-title">"Mùa Hạ Của Chúng Tôi"</div>
+    <div class="card-meta">Biên kịch · Đạo diễn · Dựng phim · 2022</div>
+    <p class="card-body">Phim ngắn đạt Giải Nhất — đảm nhận toàn bộ vai trò: viết kịch bản, đạo diễn trên set, và dựng phim hậu kỳ. Đây là lần đầu tôi trải nghiệm toàn bộ pipeline sản xuất từ script đến final cut — và hiểu rằng kịch bản phải survive được trên trường quay.</p>
+    <div class="card-media">
+      <div class="img-ph img-ph--small">
+        <div class="ph-icon">&#128247;</div>
+        <div class="ph-label">Hình minh họa cần chèn</div>
+        <div class="ph-desc">Poster hoặc still frame của phim ngắn "Mùa Hạ Của Chúng Tôi".</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PAGE 7 — MULTI-FORMAT WRITING II ================= -->
+<section class="page">
+  <div class="card">
+    <div class="card-eyebrow">Phim ngắn · Brand Storytelling</div>
+    <hr class="card-rule">
+    <div class="card-title">PNJ – Phim ngắn Mùa Cưới 2024</div>
+    <div class="card-meta">Script Writer · 2024</div>
+    <p class="card-body">Viết kịch bản phim ngắn cho mùa cưới 2024 của PNJ — storytelling cảm xúc cho thương hiệu trang sức. Format này đòi hỏi cân bằng giữa câu chuyện chân thật và thông điệp thương mại, tương tự cách talkshow cần cân bằng giữa giải trí và sponsor messaging.</p>
+    <div class="card-media">
+      <div class="img-ph img-ph--small">
+        <div class="ph-icon">&#128247;</div>
+        <div class="ph-label">Hình minh họa cần chèn</div>
+        <div class="ph-desc">Still frame từ phim ngắn PNJ Mùa Cưới 2024.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-eyebrow">Podcast · Long-form</div>
+    <hr class="card-rule">
+    <div class="card-title">Podcast Series – Sustainable Energy</div>
+    <div class="card-meta">Script Writer · Producer · 2024</div>
+    <p class="card-body">Viết kịch bản và thực hiện lồng tiếng cho podcast học thuật — format long-form 40+ phút. Kỹ năng duy trì mạch truyện qua nhiều segment dài áp dụng trực tiếp cho việc viết flow talkshow.</p>
+    <div class="card-media">
+      <div class="img-ph img-ph--small">
+        <div class="ph-icon">&#128247;</div>
+        <div class="ph-label">Hình minh họa cần chèn</div>
+        <div class="ph-desc">Cover art của podcast series "Sustainable Energy".</div>
+      </div>
+    </div>
+  </div>
+
+  <p style="font-style:italic; color:var(--text-secondary); font-size:10pt; margin-top:4mm;">Danh sách đầy đủ với visual minh họa — xem Story Architect Portfolio đính kèm, mục I (trang 06-09).</p>
+</section>
+
+<!-- ================= PAGE 8 — RESEARCH & INSIGHT I ================= -->
+<section class="page">
+  <div class="eyebrow">Thế mạnh II</div>
+  <h2 class="heading-lg">Nghiên cứu văn hóa &<br>Insight khán giả</h2>
+  <p class="subtitle">Trước khi viết một dòng kịch bản nào, tôi nghiên cứu — khán giả đang nói gì, thị trường đang thiếu gì, và văn hóa nào đang bị bỏ quên.</p>
+
+  <div class="body-text" style="margin-bottom:6mm;">
+    <p>Vị trí Biên tập viên tại Zeit yêu cầu "nghiên cứu xu hướng, thị trường và insight khán giả để đề xuất định hướng nội dung phù hợp." Đây chính xác là điều tôi đã làm — không chỉ trong lớp học, mà cho các thương hiệu thật, với dữ liệu thật.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-eyebrow">Phân tích chương trình truyền hình</div>
+    <hr class="card-rule">
+    <div class="card-title">Gặp Nhau Cuối Năm — Critical Case Study</div>
+    <div class="card-meta">Researcher · Analyst · RMIT · 2023</div>
+    <p class="card-body">Phân tích cách chương trình truyền hình giải trí phê phán quyền lực dưới vỏ bọc hài hước, qua lý thuyết encoding-decoding của Stuart Hall. Trực tiếp relevant: hiểu cách talkshow sử dụng format giải trí để truyền tải thông điệp sâu hơn — chính xác là kỹ năng cần cho việc thiết kế concept talkshow có chiều sâu.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-eyebrow">Nghiên cứu văn hóa đại chúng</div>
+    <hr class="card-rule">
+    <div class="card-title">Folk × Western Elements in V-Pop Music Videos</div>
+    <div class="card-meta">Co-Researcher · RMIT · 2024</div>
+    <p class="card-body">Phân tích cultural hybridity giữa dân ca Việt và Pop phương Tây trong MV V-Pop qua lăng kính vốn văn hóa Bourdieu. Khả năng nhận diện cách văn hóa truyền thống giao thoa với đương đại — là nền tảng để tìm góc khai thác mới cho nội dung talkshow.</p>
+    <div class="card-media">
+      <div class="img-ph img-ph--small">
+        <div class="ph-icon">&#128247;</div>
+        <div class="ph-label">Hình minh họa cần chèn</div>
+        <div class="ph-desc">Frame chụp từ một MV V-Pop tiêu biểu được phân tích trong nghiên cứu (folk × western hybridity).</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PAGE 9 — RESEARCH & INSIGHT II ================= -->
+<section class="page">
+  <div class="card">
+    <div class="card-eyebrow">Social Listening & Consumer Insight</div>
+    <hr class="card-rule">
+    <div class="card-title">MAGGI – Competitive & Consumer Analysis</div>
+    <div class="card-meta">Researcher · 2025</div>
+    <p class="card-body">Phân tích nội dung social của MAGGI và đối thủ Barona — tự kéo dữ liệu từ Fanpage Karma, lập chart so sánh, thực hiện social listening và sentiment analysis. Phát hiện rằng content MAGGI tập trung vào sản phẩm ("cao cấp," "chuẩn vị") trong khi Barona thu hút engagement bằng trải nghiệm ("dễ," "ngon," "khám phá"). Đề xuất chiến dịch dựa trên khoảng cách keyword này.</p>
+    <div class="card-media">
+      <div class="img-ph img-ph--med">
+        <div class="ph-icon">&#128202;</div>
+        <div class="ph-label">Hình minh họa cần chèn</div>
+        <div class="ph-desc">Chart so sánh keyword/sentiment giữa MAGGI và Barona (export từ Fanpage Karma hoặc dựng lại biểu đồ).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-eyebrow">Nghiên cứu văn hóa & xã hội</div>
+    <hr class="card-rule">
+    <div class="card-title">Gender Equality Magazine + "Patriotic Rap as New Red Music"</div>
+    <div class="card-meta">Concept · Editorial · Research · 2023</div>
+    <p class="card-body">Hai dự án nghiên cứu văn hóa sâu: (1) Lên concept tạp chí về bình đẳng giới tại Việt Nam, giữ vai trò Creative Director; (2) Đề xuất nghiên cứu nhạc rap yêu nước như người kế thừa của nhạc đỏ thời chiến. Cả hai chứng minh khả năng đào sâu vào chất liệu văn hóa Việt — nền tảng để tìm câu chuyện cho talkshow.</p>
+    <div class="card-media">
+      <div class="img-ph img-ph--small">
+        <div class="ph-icon">&#128247;</div>
+        <div class="ph-label">Hình minh họa cần chèn</div>
+        <div class="ph-desc">Mockup trang bìa "Gender Equality Magazine" (concept Creative Director).</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="pull-quote" style="font-size:15pt; line-height:1.5; margin-top:8mm;">
+    <span class="quote-mark">&#8220;</span>Một câu chuyện tốt không nằm ở câu chữ. Nó nằm ở cách kịch bản hiểu con người, hiểu bối cảnh, hiểu những điều âm thầm nhưng thật sự quan trọng với một cộng đồng.<span class="quote-mark">&#8221;</span>
+  </p>
+</section>
+
+<!-- ================= PAGE 10 — PRODUCTION EXPERIENCE I ================= -->
+<section class="page">
+  <div class="eyebrow">Thế mạnh III</div>
+  <h2 class="heading-lg">Kinh nghiệm sản xuất<br>thực tế</h2>
+  <p class="subtitle">Tôi không phải biên kịch chuộng bàn giấy — kinh nghiệm của tôi gắn liền với trường quay và hiện trường sản xuất.</p>
+
+  <div class="body-text" style="margin-bottom:6mm;">
+    <p>Vị trí tại Zeit yêu cầu "theo sát quá trình tiền kỳ, ghi hình, hậu kỳ và phát hành; kiểm soát chất lượng nội dung, góp ý bản dựng." Tôi đã có kinh nghiệm đó — trên set thật, với deadline thật.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-eyebrow">On-set Production · Commercial Brands</div>
+    <hr class="card-rule">
+    <div class="card-title">ForArt Film Production</div>
+    <div class="card-meta">Creative Intern · 3/2024 – 7/2024</div>
+    <p class="card-body">
+      • Điều phối trường quay cho 2 campaign thương hiệu (VinFast, TH true Milk): kiểm soát timeline, tracking source đầu ra trong toàn bộ các ngày ghi hình.<br>
+      • Quản lý full production cycle cho chuỗi video Reels trong chiến dịch VinFast VF5 × Kim Joo Yung: từ pre-production structure, shoot-day coordination, đến final delivery.<br>
+      • Viết kịch bản TVC cho 3 chiến dịch thương mại, vượt qua 4 vòng chỉnh sửa từ brief đến storyboard — đảm bảo scope không bị trôi qua production.
+    </p>
+    <div class="card-media">
+      <div class="img-ph img-ph--med">
+        <div class="ph-icon">&#128247;</div>
+        <div class="ph-label">Hình minh họa cần chèn</div>
+        <div class="ph-desc">Ảnh on-set khi điều phối trường quay cho campaign VinFast hoặc TH true Milk tại ForArt Film Production.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-eyebrow">Live Production · Triển lãm tương tác</div>
+    <hr class="card-rule">
+    <div class="card-title">RMIT Interactive Exhibition · "Little Me"</div>
+    <div class="card-meta">Project Lead · Founder · 2023-2024</div>
+    <p class="card-body">Trưởng ban tổ chức triển lãm tương tác quy mô 300+ khách tham dự về chủ đề sức khỏe tâm thần — từ concept, gọi vốn 18 triệu đồng, đến vận hành 3 ngày liên tục. Đạt 316 lượt tham quan và 34.500+ lượt tương tác trên social media. Kinh nghiệm quản lý live production quy mô lớn dưới áp lực timeline chặt.</p>
+    <div class="card-media">
+      <div class="img-ph img-ph--small">
+        <div class="ph-icon">&#128247;</div>
+        <div class="ph-label">Hình minh họa cần chèn</div>
+        <div class="ph-desc">Ảnh không gian/khách tham quan triển lãm "Little Me" tại RMIT.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PAGE 11 — PRODUCTION EXPERIENCE II ================= -->
+<section class="page">
+  <div class="card">
+    <div class="card-eyebrow">Multi-platform Content</div>
+    <hr class="card-rule">
+    <div class="card-title">RMIT Student Council – TikTok Content Planner</div>
+    <div class="card-meta">Media Planner · Content Creator · 2022-2023</div>
+    <p class="card-body">Đảm nhận vai trò Planner cho các kênh social của RMIT Student Council — tạo ra những video viral đầu tiên cho tổ chức trên TikTok. Kinh nghiệm tư duy nội dung đa nền tảng: mỗi sản phẩm phải hoạt động trên cả long-form (YouTube) và short-form (TikTok, Reels) — đúng với cách team Social Content tại Zeit cần vận hành.</p>
+    <div class="card-media">
+      <div class="img-ph img-ph--small">
+        <div class="ph-icon">&#128247;</div>
+        <div class="ph-label">Hình minh họa cần chèn</div>
+        <div class="ph-desc">Screenshot grid các video TikTok viral của RMIT Student Council.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-eyebrow">Event Coordination · Quy mô lớn</div>
+    <hr class="card-rule">
+    <div class="card-title">MBE – Mien Bac Event</div>
+    <div class="card-meta">Trợ lý Giám đốc (Thực tập) · 2/2026 – 5/2026</div>
+    <p class="card-body">Triển khai logistics toàn diện cho 7 sự kiện doanh nghiệp (50-400 người tham dự). Điều phối lữ hành cho sự kiện du lịch doanh nghiệp gồm 270 người tại Hà Nội. Kinh nghiệm vận hành sự kiện quy mô lớn — áp dụng trực tiếp cho việc điều phối logistics trước và trong ngày ghi hình talkshow.</p>
+    <div class="card-media">
+      <div class="img-ph img-ph--small">
+        <div class="ph-icon">&#128247;</div>
+        <div class="ph-label">Hình minh họa cần chèn</div>
+        <div class="ph-desc">Ảnh hiện trường một sự kiện doanh nghiệp do MBE tổ chức.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="pull-quote" style="font-size:14pt; line-height:1.5; margin-top:8mm;">
+    <span class="quote-mark">&#8220;</span>Tôi tin trách nhiệm của một biên tập viên không kết thúc khi giao kịch bản. Nó kết thúc khi nội dung on-air đúng như thiết kế ban đầu.<span class="quote-mark">&#8221;</span>
+  </p>
+</section>
+
+<!-- ================= PAGE 12 — CLOSING ================= -->
+<section class="page closing">
+  <div class="eyebrow">Liên hệ · Contact</div>
+  <h2 class="closing-heading">Kết nối với<br>Felix Phan</h2>
+
+  <p class="pull-quote" style="font-size:14pt; line-height:1.5;">
+    <span class="quote-mark">&#8220;</span>Tôi muốn được cùng Zeit xây những chương trình để lại điều gì đó cho người xem — không chỉ để xem, mà để ngẫm, để bàn luận, và để ghi nhớ.<span class="quote-mark">&#8221;</span>
+  </p>
+
+  <div class="contact-list">
+    <div class="contact-row">
+      <div class="contact-label">EMAIL</div>
+      <div class="contact-value"><a href="mailto:felixphan.contact@gmail.com">felixphan.contact@gmail.com</a></div>
+    </div>
+    <div class="contact-row">
+      <div class="contact-label">PHONE</div>
+      <div class="contact-value"><a href="tel:+84936647704">+84 936 647 704</a></div>
+    </div>
+    <div class="contact-row">
+      <div class="contact-label">LINKEDIN</div>
+      <div class="contact-value"><a href="https://linkedin.com/in/felixphan">linkedin.com/in/felixphan</a></div>
+    </div>
+    <div class="contact-row">
+      <div class="contact-label">BASE</div>
+      <div class="contact-value">Hồ Chí Minh City · Vietnam</div>
+    </div>
+    <div class="contact-row">
+      <div class="contact-label">AVAILABLE</div>
+      <div class="contact-value">Full-time · Ngay lập tức</div>
+    </div>
+  </div>
+
+  <div class="closing-note">Đính kèm: CV · Story Architect Portfolio (PDF)</div>
+</section>
+
+</body>
+</html>
