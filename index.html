@@ -2,647 +2,799 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Felix Phan — Portfolio 2026</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Felix Phan — Story Architect · Portfolio 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --burgundy:#6B1D1D;
-    --gold:#C9A96E;
-    --text-main:#1A1A1A;
-    --text-secondary:#666666;
-    --text-tertiary:#999999;
-    --line:#E0E0E0;
-  }
+/* === Variables & Reset === */
+:root{
+  --burgundy:#6B1D1D; --burgundy-dark:#4A1212; --burgundy-light:#8B2929;
+  --gold:#C9A96E; --gold-light:#DEC08A;
+  --cream:#FDF8F3; --cream-dark:#F5EDE0;
+  --text:#1A1A1A; --text-mid:#444; --text-soft:#777; --text-faint:#AAA;
+  --line:#E0E0E0; --white:#FFFFFF; --dark:#0D0D0D; --dark-2:#181818;
+  --radius:6px; --nav-h:68px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',Arial,sans-serif;font-size:16px;line-height:1.65;color:var(--text);background:var(--white);overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
 
-  *{box-sizing:border-box;}
+/* === Typography === */
+.eyebrow{font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:600;color:var(--gold);}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,54px);font-weight:600;line-height:1.15;}
+.section-subtitle{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(16px,2vw,20px);color:var(--text-soft);margin-top:12px;}
 
-  @page{ size:A4; margin:0; }
+/* === Layout === */
+.container{max-width:1200px;margin:0 auto;padding:0 48px;}
+section{padding:100px 0;}
 
-  html,body{
-    margin:0; padding:0;
-    background:#FFFFFF;
-    color:var(--text-main);
-    font-family:'Inter',Arial,sans-serif;
-    font-size:11pt;
-    line-height:1.6;
-    -webkit-print-color-adjust:exact;
-    print-color-adjust:exact;
-  }
+/* === NAV === */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  height:var(--nav-h);display:flex;align-items:center;
+  padding:0 48px;
+  transition:background .4s,box-shadow .4s;
+}
+#nav.scrolled{background:rgba(255,255,255,.94);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line);}
+.nav-logo{font-family:'Playfair Display',serif;font-size:20px;font-style:italic;font-weight:500;color:rgba(255,255,255,.9);transition:color .4s;flex:1;}
+#nav.scrolled .nav-logo{color:var(--text);}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none;}
+.nav-links a{
+  font-size:13px;font-weight:500;letter-spacing:.4px;
+  color:rgba(255,255,255,.7);transition:color .3s;
+  position:relative;padding-bottom:2px;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-4px;left:0;right:0;
+  height:1px;background:var(--gold);transform:scaleX(0);
+  transform-origin:left;transition:transform .3s;
+}
+.nav-links a:hover,.nav-links a.active{color:rgba(255,255,255,1);}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);}
+#nav.scrolled .nav-links a{color:var(--text-mid);}
+#nav.scrolled .nav-links a:hover,#nav.scrolled .nav-links a.active{color:var(--text);}
+.nav-pdf{
+  margin-left:24px;padding:8px 20px;
+  border:1px solid rgba(255,255,255,.3);border-radius:var(--radius);
+  font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;
+  color:var(--white);transition:all .3s;
+}
+.nav-pdf:hover{background:var(--white);color:var(--text);border-color:var(--white);}
+#nav.scrolled .nav-pdf{border-color:var(--line);color:var(--text);}
+#nav.scrolled .nav-pdf:hover{background:var(--text);color:var(--white);}
 
-  h1,h2,h3,.serif{ font-family:'Playfair Display',Georgia,serif; font-weight:600; margin:0; }
+/* === HERO === */
+#hero{
+  min-height:100vh;position:relative;background:var(--dark-2);
+  display:flex;flex-direction:column;justify-content:center;overflow:hidden;
+}
+.hero-accent-right{
+  position:absolute;top:0;right:0;width:42%;height:100%;
+  background:linear-gradient(155deg,var(--burgundy-dark) 0%,transparent 65%);
+  opacity:.55;pointer-events:none;
+}
+.hero-dot{
+  position:absolute;bottom:40px;right:48px;
+  width:180px;height:180px;
+  background-image:radial-gradient(circle,rgba(201,169,110,.18) 1px,transparent 1px);
+  background-size:18px 18px;pointer-events:none;
+}
+.hero-inner{
+  position:relative;z-index:1;max-width:1200px;margin:0 auto;
+  padding:0 48px;padding-top:var(--nav-h);
+  display:grid;grid-template-columns:1fr 320px;gap:60px;align-items:center;width:100%;
+}
+.hero-kicker{font-size:11px;letter-spacing:3.5px;text-transform:uppercase;font-weight:600;color:var(--gold);margin-bottom:28px;animation:fadeUp .9s ease .2s both;}
+.hero-name{
+  font-family:'Playfair Display',serif;font-size:clamp(72px,10vw,116px);
+  font-weight:700;line-height:.95;color:var(--white);
+  animation:fadeUp .9s ease .4s both;
+}
+.hero-name .outline{
+  -webkit-text-stroke:1px rgba(255,255,255,.25);color:transparent;display:block;
+}
+.hero-role{
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:clamp(20px,3vw,28px);color:var(--gold);
+  margin-top:20px;animation:fadeUp .9s ease .6s both;
+}
+.hero-divider{
+  width:48px;height:2px;background:var(--gold);margin:28px 0;
+  animation:expandW .7s ease .9s both;
+  transform-origin:left;
+}
+.hero-tagline{
+  font-size:clamp(15px,1.5vw,17px);color:rgba(255,255,255,.6);
+  max-width:480px;line-height:1.75;animation:fadeUp .9s ease .8s both;
+}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:40px;animation:fadeUp .9s ease 1s both;}
+.btn-primary{
+  padding:14px 30px;background:var(--burgundy);color:var(--white);
+  border-radius:var(--radius);font-size:14px;font-weight:600;letter-spacing:.4px;
+  transition:all .3s;display:inline-flex;align-items:center;gap:8px;
+}
+.btn-primary:hover{background:var(--burgundy-light);transform:translateY(-2px);box-shadow:0 8px 24px rgba(107,29,29,.4);}
+.btn-ghost{
+  padding:14px 30px;background:transparent;color:rgba(255,255,255,.75);
+  border:1px solid rgba(255,255,255,.22);border-radius:var(--radius);
+  font-size:14px;font-weight:500;transition:all .3s;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+.hero-right{animation:fadeLeft .9s ease .5s both;}
+.hero-photo-ph{
+  width:100%;aspect-ratio:3/4;border:1px dashed rgba(201,169,110,.3);
+  background:rgba(255,255,255,.03);border-radius:var(--radius);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:24px;
+}
+.hero-photo-ph .ico{font-size:26px;color:rgba(201,169,110,.4);margin-bottom:12px;}
+.hero-photo-ph .txt{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.22);line-height:1.7;}
+.hero-bar{
+  position:relative;z-index:1;max-width:1200px;margin:56px auto 0;
+  padding:28px 48px 0;border-top:1px solid rgba(255,255,255,.08);
+  display:flex;gap:40px;flex-wrap:wrap;
+  animation:fadeUp .9s ease 1.2s both;
+}
+.hero-bar a,.hero-bar span{
+  font-size:13px;color:rgba(255,255,255,.38);transition:color .3s;
+  display:flex;align-items:center;gap:8px;
+}
+.hero-bar a:hover{color:var(--gold);}
+.hero-bar .lbl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);opacity:.65;}
 
-  p{ margin:0 0 10px 0; }
-  p:last-child{ margin-bottom:0; }
+/* === ABOUT === */
+#gioi-thieu{background:var(--cream);}
+.about-grid{display:grid;grid-template-columns:5fr 7fr;gap:80px;align-items:start;}
+.sticky-col{position:sticky;top:100px;}
+.big-quote{
+  font-family:'Playfair Display',serif;font-size:clamp(20px,2.2vw,26px);
+  font-style:italic;color:var(--burgundy);line-height:1.55;
+}
+.about-body p{font-size:16px;color:var(--text-mid);line-height:1.8;margin-bottom:18px;}
+.about-body p:last-child{margin-bottom:0;}
+.stats-row{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden;margin-top:44px;
+}
+.stat-box{background:var(--white);padding:24px 16px;text-align:center;}
+.stat-num{font-family:'Playfair Display',serif;font-size:44px;font-weight:700;color:var(--burgundy);line-height:1;}
+.stat-lbl{font-size:12px;color:var(--text-soft);margin-top:6px;line-height:1.4;}
+.callout{
+  margin-top:36px;padding:20px 22px;
+  border-left:3px solid var(--burgundy);
+  background:rgba(107,29,29,.05);border-radius:0 var(--radius) var(--radius) 0;
+  font-size:14.5px;color:var(--text-mid);font-style:italic;line-height:1.7;
+}
 
-  .page{
-    width:170mm;
-    margin:0 auto;
-    break-after:page;
-    position:relative;
-    padding-top:7mm; /* guards against a Chromium pagination quirk where an
-      element pushed onto a new page (break-inside:avoid) can render flush
-      against the top edge, overlapping the running header */
-  }
-  .page:last-child{ break-after:auto; }
+/* === FEATURED PROJECT (burgundy bg) === */
+#du-an{background:var(--burgundy);color:var(--white);position:relative;overflow:hidden;}
+#du-an .eyebrow{color:var(--gold);}
+.du-an-glow{
+  position:absolute;top:-300px;right:-300px;width:700px;height:700px;
+  background:radial-gradient(circle,rgba(255,255,255,.04),transparent 70%);
+  pointer-events:none;
+}
+.proj-top{display:grid;grid-template-columns:7fr 5fr;gap:56px;align-items:start;}
+.proj-title{
+  font-family:'Playfair Display',serif;font-size:clamp(38px,5.5vw,64px);
+  font-weight:700;line-height:1.1;color:var(--white);margin:20px 0 14px;
+}
+.proj-sub{
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:18px;color:rgba(255,255,255,.5);margin-bottom:22px;
+}
+.proj-body{font-size:16px;color:rgba(255,255,255,.72);line-height:1.8;}
+.proj-body p{margin-bottom:14px;}
+.proj-img-ph{
+  border:1px dashed rgba(201,169,110,.3);background:rgba(0,0,0,.18);
+  border-radius:var(--radius);padding:32px 20px;height:280px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+}
+.proj-img-ph .ico{font-size:22px;color:rgba(201,169,110,.45);margin-bottom:10px;}
+.proj-img-ph .lbl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(201,169,110,.45);margin-bottom:8px;}
+.proj-img-ph .desc{font-size:13px;color:rgba(255,255,255,.28);line-height:1.5;}
+.proj-tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:36px;}
+.tag{
+  padding:6px 16px;border:1px solid rgba(201,169,110,.3);border-radius:20px;
+  font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
+  color:rgba(255,255,255,.6);transition:all .3s;cursor:default;
+}
+.tag:hover{border-color:var(--gold);color:var(--gold);}
+.proj-rule{border:none;border-top:1px solid rgba(255,255,255,.1);margin:60px 0;}
+.steps-heading{font-family:'Playfair Display',serif;font-size:28px;color:rgba(255,255,255,.9);margin-bottom:32px;}
+.steps-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;}
+.step-card{
+  background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.07);
+  border-radius:var(--radius);padding:22px 18px;
+  transition:all .35s;cursor:default;
+}
+.step-card:hover{background:rgba(0,0,0,.35);border-color:rgba(201,169,110,.3);transform:translateY(-5px);}
+.step-n{font-family:'Playfair Display',serif;font-size:34px;font-weight:700;color:var(--gold);opacity:.45;line-height:1;margin-bottom:12px;}
+.step-h{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.step-p{font-size:13px;color:rgba(255,255,255,.58);line-height:1.65;}
+.proj-end{margin-top:56px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+.proj-pq{
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:clamp(17px,1.9vw,22px);color:var(--gold-light);line-height:1.6;
+}
+.proj-et{font-size:15px;color:rgba(255,255,255,.62);line-height:1.75;}
+.proj-et p{margin-bottom:12px;}
+.proj-et .note{font-style:italic;color:rgba(255,255,255,.3);}
 
-  .eyebrow{
-    font-family:'Inter',sans-serif;
-    font-size:9pt;
-    letter-spacing:2.2px;
-    text-transform:uppercase;
-    color:var(--text-tertiary);
-    font-weight:600;
-    margin-bottom:6mm;
-  }
+/* === BIÊN KỊCH (white) === */
+#bien-kich{background:var(--white);}
+#bien-kich .eyebrow{color:var(--burgundy);}
+.sec-header{margin-bottom:52px;}
+.sec-intro{font-size:16px;color:var(--text-mid);max-width:620px;margin-top:18px;line-height:1.75;}
+.cards-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+.card{
+  border-top:2px solid var(--burgundy);padding:26px;
+  background:var(--white);border-radius:0 0 var(--radius) var(--radius);
+  transition:all .35s;position:relative;overflow:hidden;
+  box-shadow:0 2px 0 var(--line);
+}
+.card:hover{box-shadow:0 12px 36px rgba(0,0,0,.09);transform:translateY(-4px);}
+.card-ey{font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:600;color:var(--text-soft);margin-bottom:8px;}
+.card-title{font-size:19px;font-weight:700;color:var(--text);margin-bottom:5px;}
+.card-meta{font-size:13px;color:var(--text-soft);margin-bottom:14px;}
+.card-body{font-size:14.5px;color:var(--text-mid);line-height:1.7;}
+.card-ph{
+  margin-top:18px;border:1px dashed var(--gold);background:var(--cream);
+  border-radius:var(--radius);padding:14px;text-align:center;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:72px;
+}
+.card-ph .ico{font-size:15px;color:var(--gold);margin-bottom:4px;}
+.card-ph .lbl{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-faint);}
+.card-ph .desc{font-size:11px;color:var(--text-soft);margin-top:2px;}
+.sec-fn{margin-top:36px;font-style:italic;font-size:14px;color:var(--text-soft);border-top:1px solid var(--line);padding-top:22px;}
 
-  hr.thin{
-    border:none;
-    border-top:0.5px solid var(--line);
-    margin:6mm 0;
-  }
-  hr.thin.tight{ margin:3mm 0; }
+/* === NGHIÊN CỨU (cream) === */
+#nghien-cuu{background:var(--cream);}
+#nghien-cuu .eyebrow{color:var(--burgundy);}
+#nghien-cuu .card{background:var(--white);}
+.ngc-intro{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:start;margin-bottom:56px;}
+.ngc-body{font-size:16px;color:var(--text-mid);line-height:1.8;}
+.ngc-body p{margin-bottom:14px;}
+.bottom-pq{
+  margin-top:44px;padding:32px 36px;
+  background:var(--burgundy);border-radius:var(--radius);text-align:center;
+}
+.bottom-pq .text{
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:clamp(16px,1.8vw,20px);color:rgba(255,255,255,.9);line-height:1.65;
+}
 
-  .pull-quote{
-    font-family:'Playfair Display',serif;
-    font-style:italic;
-    color:var(--burgundy);
-  }
+/* === SẢN XUẤT (white) === */
+#san-xuat{background:var(--white);}
+#san-xuat .eyebrow{color:var(--burgundy);}
+.stats-banner{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden;margin:44px 0 52px;
+}
+.sb-stat{background:var(--cream);padding:28px 16px;text-align:center;}
+.sb-num{font-family:'Playfair Display',serif;font-size:46px;font-weight:700;color:var(--burgundy);line-height:1;}
+.sb-lbl{font-size:12px;color:var(--text-soft);margin-top:6px;line-height:1.4;}
+.san-pq{
+  margin-top:44px;font-family:'Playfair Display',serif;font-style:italic;
+  font-size:clamp(16px,1.8vw,20px);color:var(--burgundy);
+  border-left:3px solid var(--gold);padding:18px 22px;
+  background:rgba(201,169,110,.06);border-radius:0 var(--radius) var(--radius) 0;line-height:1.65;
+}
 
-  .quote-mark{ font-style:normal; }
+/* === CONTACT (dark) === */
+#lien-he{background:var(--dark);color:var(--white);position:relative;overflow:hidden;}
+.ct-bg{
+  position:absolute;top:0;left:0;bottom:0;width:36%;
+  background:var(--burgundy-dark);opacity:.45;
+  clip-path:polygon(0 0,85% 0,100% 100%,0 100%);pointer-events:none;
+}
+.ct-grid{position:relative;z-index:1;display:grid;grid-template-columns:5fr 7fr;gap:80px;align-items:center;}
+.ct-ey{color:var(--gold);margin-bottom:16px;}
+.ct-h{font-family:'Playfair Display',serif;font-size:clamp(38px,5vw,58px);font-weight:700;line-height:1.1;color:var(--white);margin-bottom:24px;}
+.ct-q{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(15px,1.6vw,18px);color:rgba(255,255,255,.52);line-height:1.7;margin-bottom:32px;}
+.avail-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(107,29,29,.45);border:1px solid rgba(107,29,29,.7);
+  padding:8px 18px;border-radius:20px;
+}
+.avail-dot{
+  width:8px;height:8px;border-radius:50%;background:#4CAF50;
+  box-shadow:0 0 0 3px rgba(76,175,80,.25);animation:pulse 2s infinite;
+}
+.avail-txt{font-size:13px;color:rgba(255,255,255,.68);}
+.ct-rows{margin-bottom:20px;}
+.ct-row{
+  display:flex;align-items:center;padding:17px 0;gap:24px;
+  border-bottom:1px solid rgba(255,255,255,.07);
+}
+.ct-row:first-child{border-top:1px solid rgba(255,255,255,.07);}
+.ct-lbl{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);width:88px;flex-shrink:0;}
+.ct-val{font-size:16px;color:rgba(255,255,255,.82);}
+.ct-val a{transition:color .3s;}
+.ct-val a:hover{color:var(--gold);}
+.ct-fn{font-size:13px;color:rgba(255,255,255,.28);margin-top:20px;}
 
-  /* ---------- Page 1 — Cover ---------- */
-  .cover{ height:250mm; display:flex; flex-direction:column; }
-  .cover-top{ display:flex; justify-content:space-between; align-items:flex-start; }
-  .cover-kicker{
-    font-size:9.5pt; letter-spacing:2.5px; text-transform:uppercase;
-    color:var(--text-secondary); font-weight:600;
-  }
-  .cover-name-block{ flex:1; display:flex; flex-direction:column; justify-content:center; }
-  .cover-name{ font-size:48pt; line-height:1.05; font-weight:600; color:var(--text-main); }
-  .cover-role{
-    font-family:'Playfair Display',serif; font-style:italic; font-size:16pt;
-    color:var(--burgundy); margin-top:6mm;
-  }
-  .cover-bottom{ }
-  .cover-contact{
-    display:flex; gap:14px; flex-wrap:wrap; font-size:10pt; color:var(--text-secondary);
-    border-top:0.5px solid var(--line); padding-top:5mm; margin-bottom:3mm;
-  }
-  .cover-contact span:not(:last-child)::after{ content:"   |   "; color:var(--line); }
-  .cover-date{ font-size:9.5pt; color:var(--text-tertiary); }
-  .headshot-ph{
-    width:34mm; height:42mm; border:1px dashed var(--gold); background:#FAF8F3;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    text-align:center; padding:3mm; border-radius:2px; flex-shrink:0;
-  }
-  .headshot-ph .ph-icon{ font-size:16pt; color:var(--gold); margin-bottom:2mm; }
-  .headshot-ph .ph-text{ font-size:7pt; color:var(--text-secondary); line-height:1.4; }
+/* === ANIMATIONS === */
+.reveal{
+  opacity:0;transform:translateY(30px);
+  transition:opacity .7s cubic-bezier(.25,.8,.25,1),transform .7s cubic-bezier(.25,.8,.25,1);
+}
+.reveal.from-left{transform:translateX(-30px);}
+.reveal.from-right{transform:translateX(30px);}
+.reveal.active{opacity:1;transform:translate(0,0);}
 
-  /* ---------- Image placeholder component ---------- */
-  .img-ph{
-    border:1px dashed var(--gold);
-    background:#FAF8F3;
-    border-radius:2px;
-    padding:4mm;
-    text-align:center;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    margin:4mm 0;
-  }
-  .img-ph .ph-icon{ font-size:16pt; color:var(--gold); margin-bottom:1.5mm; }
-  .img-ph .ph-label{
-    font-size:8pt; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-tertiary);
-    font-weight:600; margin-bottom:1.5mm;
-  }
-  .img-ph .ph-desc{ font-size:9.5pt; color:var(--text-secondary); line-height:1.45; max-width:140mm; }
-  .img-ph--wide{ height:58mm; }
-  .img-ph--med{ height:36mm; }
-  .img-ph--small{ height:24mm; }
+@keyframes fadeUp{from{opacity:0;transform:translateY(26px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeLeft{from{opacity:0;transform:translateX(26px);}to{opacity:1;transform:translateX(0);}}
+@keyframes expandW{from{transform:scaleX(0);}to{transform:scaleX(1);}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(76,175,80,.25);}50%{box-shadow:0 0 0 7px rgba(76,175,80,.08);}}
 
-  /* ---------- Section heading blocks ---------- */
-  .heading-xl{ font-size:32pt; line-height:1.12; margin-bottom:5mm; }
-  .heading-lg{ font-size:28pt; line-height:1.15; margin-bottom:4mm; }
-  .heading-md{ font-size:18pt; margin-bottom:6mm; }
-  .subtitle{
-    font-family:'Playfair Display',serif; font-style:italic; font-size:13pt;
-    color:var(--text-secondary); margin-bottom:6mm;
-  }
-  .body-text p{ font-size:11pt; }
-
-  /* ---------- Tag grid ---------- */
-  .tag-grid{
-    display:grid; grid-template-columns:1fr 1fr; gap:3mm; margin-top:8mm;
-  }
-  .tag-box{
-    border:1px solid var(--line); border-radius:4px; padding:4px 12px;
-    font-size:9pt; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-secondary);
-    text-align:center;
-  }
-
-  /* ---------- Numbered steps ---------- */
-  .step{ display:flex; gap:6mm; margin-bottom:7mm; break-inside:avoid; }
-  .step-num{
-    font-family:'Playfair Display',serif; font-size:20pt; color:var(--gold);
-    width:16mm; flex-shrink:0; font-weight:600;
-  }
-  .step-content h3{
-    font-family:'Inter',sans-serif; font-size:11.5pt; font-weight:700;
-    letter-spacing:0.5px; text-transform:uppercase; color:var(--text-main); margin-bottom:2mm;
-  }
-  .step-content p{ font-size:10.5pt; color:var(--text-secondary); line-height:1.65; }
-
-  /* ---------- Project cards ---------- */
-  .card{
-    border-top:2px solid var(--burgundy); padding-top:4mm; margin-bottom:5mm; break-inside:avoid;
-  }
-  .card-eyebrow{
-    font-size:9pt; letter-spacing:1.8px; text-transform:uppercase; color:var(--text-secondary); font-weight:600;
-  }
-  hr.card-rule{ border:none; border-top:0.5px solid var(--line); margin:2mm 0 3mm 0; }
-  .card-title{ font-size:14pt; font-weight:700; color:var(--text-main); margin-bottom:1mm; }
-  .card-meta{ font-size:10pt; color:var(--text-secondary); margin-bottom:3mm; }
-  .card-body{ font-size:11pt; color:var(--text-main); }
-  .card-media{ margin-top:4mm; }
-
-  /* ---------- Intro box (page 2) ---------- */
-  .intro-box{
-    border-left:3px solid var(--burgundy); padding:4mm 6mm; margin:8mm 0;
-    background:#FBF8F8; font-size:10.5pt; color:var(--text-secondary); font-style:italic;
-  }
-
-  /* ---------- TOC ---------- */
-  .toc{ margin-top:10mm; }
-  .toc-title{
-    font-size:9pt; letter-spacing:2px; text-transform:uppercase; color:var(--text-tertiary);
-    font-weight:600; margin-bottom:5mm;
-  }
-  .toc-item{ display:flex; align-items:baseline; gap:8px; margin-bottom:4mm; }
-  .toc-marker{ font-family:'Playfair Display',serif; color:var(--burgundy); width:7mm; flex-shrink:0; font-weight:600; }
-  .toc-label{ flex-shrink:0; }
-  .toc-label .toc-main{ font-weight:600; font-size:10.5pt; }
-  .toc-label .toc-sub{ font-size:9pt; color:var(--text-secondary); font-style:italic; }
-  .toc-dots{ flex:1; border-bottom:1px dotted var(--text-tertiary); height:0; margin-bottom:2px; }
-  .toc-page{ font-size:10.5pt; color:var(--text-secondary); flex-shrink:0; }
-
-  /* ---------- Closing page ---------- */
-  .closing{ height:250mm; display:flex; flex-direction:column; justify-content:center; }
-  .closing-heading{ font-size:36pt; line-height:1.15; margin:6mm 0 8mm 0; }
-  .contact-list{ margin-top:10mm; }
-  .contact-row{ display:flex; gap:8mm; padding:3mm 0; border-bottom:0.5px solid var(--line); }
-  .contact-row:first-child{ border-top:0.5px solid var(--line); }
-  .contact-label{
-    width:28mm; flex-shrink:0; font-size:9pt; letter-spacing:1.5px; color:var(--text-tertiary); font-weight:600;
-  }
-  .contact-value{ font-size:11pt; color:var(--text-main); }
-  .contact-value a{ color:var(--text-main); text-decoration:none; }
-  .closing-note{ font-size:9pt; color:var(--text-tertiary); margin-top:10mm; }
-
+/* === RESPONSIVE === */
+@media(max-width:1024px){
+  .steps-grid{grid-template-columns:repeat(3,1fr);}
+  .proj-top{grid-template-columns:1fr;}
+  .hero-photo-ph{display:none;}
+  .hero-inner{grid-template-columns:1fr;}
+}
+@media(max-width:768px){
+  .container{padding:0 24px;}
+  section{padding:72px 0;}
+  #nav{padding:0 24px;}
+  .hero-inner{padding:0 24px;padding-top:var(--nav-h);}
+  .hero-bar{padding:0 24px;}
+  .about-grid,.ngc-intro,.ct-grid{grid-template-columns:1fr;gap:40px;}
+  .sticky-col{position:static;}
+  .cards-grid{grid-template-columns:1fr;}
+  .steps-grid{grid-template-columns:1fr 1fr;}
+  .stats-row,.stats-banner{grid-template-columns:1fr 1fr;}
+  .ct-bg{display:none;}
+  .proj-end{grid-template-columns:1fr;}
+  .nav-links{gap:18px;}
+  .nav-pdf{display:none;}
+}
+@media(max-width:480px){
+  .steps-grid{grid-template-columns:1fr;}
+  .stats-row{grid-template-columns:1fr;}
+}
 </style>
 </head>
 <body>
 
-<!-- ================= PAGE 1 — COVER ================= -->
-<section class="page cover">
-  <div class="cover-top">
-    <div class="cover-kicker">Portfolio · Dành cho vị trí Biên tập viên</div>
-    <div class="headshot-ph">
-      <div class="ph-icon">&#128247;</div>
-      <div class="ph-text">ẢNH CHÂN DUNG<br>(tùy chọn)<br>Vertical, professional,<br>background đơn giản</div>
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo">Felix Phan</a>
+  <ul class="nav-links">
+    <li><a href="#gioi-thieu">Về tôi</a></li>
+    <li><a href="#du-an">Dự Án</a></li>
+    <li><a href="#bien-kich">Kỹ Năng</a></li>
+    <li><a href="#san-xuat">Kinh Nghiệm</a></li>
+    <li><a href="#lien-he">Liên Hệ</a></li>
+  </ul>
+  <a href="output/Felix_Phan_Portfolio_Zeit_Media_2026.pdf" download class="nav-pdf">Tải PDF</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-accent-right"></div>
+  <div class="hero-dot"></div>
+
+  <div class="hero-inner">
+    <div>
+      <p class="hero-kicker">Portfolio · Biên Tập Viên · Zeit Media · 2026</p>
+      <h1 class="hero-name">
+        Felix<br>
+        <span class="outline">Phan</span>
+      </h1>
+      <p class="hero-role">Story Architect</p>
+      <div class="hero-divider"></div>
+      <p class="hero-tagline">
+        Tôi thiết kế tình huống trước khi viết script.
+        Nghiên cứu trước, tìm khoảnh khắc thật, rồi xây mạch truyện.
+      </p>
+      <div class="hero-ctas">
+        <a href="#gioi-thieu" class="btn-primary">Khám phá portfolio ↓</a>
+        <a href="output/Felix_Phan_Portfolio_Zeit_Media_2026.pdf" download class="btn-ghost">Tải PDF →</a>
+      </div>
     </div>
-  </div>
-
-  <div class="cover-name-block">
-    <h1 class="cover-name">Felix<br>Phan</h1>
-    <div class="cover-role">Story Architect</div>
-  </div>
-
-  <div class="cover-bottom">
-    <div class="cover-contact">
-      <span>Email: felixphan.contact@gmail.com</span>
-      <span>Phone: +84 936 647 704</span>
-      <span>LinkedIn: linkedin.com/in/felixphan</span>
-    </div>
-    <div class="cover-date">Hồ Chí Minh City · Tháng 6, 2026</div>
-  </div>
-</section>
-
-<!-- ================= PAGE 2 — OPENING ================= -->
-<section class="page">
-  <p class="pull-quote" style="font-size:24pt; line-height:1.4; margin-bottom:8mm;">
-    <span class="quote-mark">&#8220;</span>Một tập talkshow thường được nhớ không phải vì câu hỏi hay — mà vì khoảnh khắc khách mời nói điều họ chưa từng nói ở đâu trước đó. Khoảnh khắc đó không ngẫu nhiên. Nó được thiết kế.<span class="quote-mark">&#8221;</span>
-  </p>
-
-  <div class="body-text" style="line-height:1.8;">
-    <p>Tôi là Felix Phan — ứng viên song bằng Truyền thông (RMIT) và Quản trị Kinh doanh (NEU), sẵn sàng làm việc full-time.</p>
-    <p>Tôi tự gọi mình là Story Architect — không phải vì thích danh hiệu đẹp, mà vì đó là cách tôi tiếp cận mọi kịch bản: không bắt đầu từ câu hỏi, mà bắt đầu từ tình huống. Ai là người này thật sự? Điều gì sẽ khiến họ không thể không nói thật? Format nào sẽ dẫn người xem đến khoảnh khắc đó một cách tự nhiên nhất?</p>
-    <p>Tôi có kinh nghiệm viết kịch bản đa định dạng cho hơn 10 thương hiệu (VinFast, MAGGI, Hapacol, PNJ, BUV), từng đạt Giải Nhất cuộc thi phim ngắn với vai trò biên kịch kiêm đạo diễn, và đã điều phối sản xuất trực tiếp trên trường quay cho các campaign thương mại.</p>
-  </div>
-
-  <div class="intro-box">
-    Portfolio này được xây riêng cho vị trí Biên tập viên tại Zeit Media. Mỗi trang được thiết kế để trả lời câu hỏi: "Người này có thể phát triển kịch bản talkshow từ ý tưởng đến on-air không?"
-  </div>
-
-  <div class="toc">
-    <div class="toc-title">Mục lục</div>
-
-    <div class="toc-item">
-      <div class="toc-marker">&#10054;</div>
-      <div class="toc-label"><span class="toc-main">Bếp Nhà Haha Gặp Bếp Cung Đình</span> — <span class="toc-sub">Dự án sáng tạo cá nhân</span></div>
-      <div class="toc-dots"></div>
-      <div class="toc-page">03</div>
-    </div>
-
-    <div class="toc-item">
-      <div class="toc-marker">I</div>
-      <div class="toc-label"><span class="toc-main">Biên kịch đa định dạng</span> — <span class="toc-sub">TVC · Phim ngắn · Podcast</span></div>
-      <div class="toc-dots"></div>
-      <div class="toc-page">06</div>
-    </div>
-
-    <div class="toc-item">
-      <div class="toc-marker">II</div>
-      <div class="toc-label"><span class="toc-main">Nghiên cứu văn hóa & Insight khán giả</span></div>
-      <div class="toc-dots"></div>
-      <div class="toc-page">08</div>
-    </div>
-
-    <div class="toc-item">
-      <div class="toc-marker">III</div>
-      <div class="toc-label"><span class="toc-main">Kinh nghiệm sản xuất thực tế</span></div>
-      <div class="toc-dots"></div>
-      <div class="toc-page">10</div>
-    </div>
-
-    <div class="toc-item">
-      <div class="toc-marker">&nbsp;</div>
-      <div class="toc-label"><span class="toc-main">Kết nối với Felix Phan</span></div>
-      <div class="toc-dots"></div>
-      <div class="toc-page">12</div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= PAGE 3 — PROJECT INTRO ================= -->
-<section class="page">
-  <div class="eyebrow">Dự án sáng tạo cá nhân · Episode Treatment</div>
-  <h2 class="heading-xl">Bếp Nhà Haha<br>Gặp Bếp Cung Đình</h2>
-  <p class="subtitle">Treatment đề xuất cho một tập giả tưởng trong chặng Huế của Quán Nhà Haha</p>
-
-  <div class="body-text">
-    <p>Để chứng minh quy trình làm việc của mình với nội dung talkshow, tôi đã tự chọn một show đang phát sóng — Quán Nhà Haha — và phát triển đầy đủ treatment cho một tập giả tưởng. Không phải bài tập học thuật. Đây là cách tôi tiếp cận mọi kịch bản: nghiên cứu trước, thiết kế tình huống, rồi viết.</p>
-    <p>Ý tưởng lõi: Đưa dàn cast Quán Nhà Haha vào một bữa tối Nhã nhạc cung đình trên thuyền Rồng sông Hương — nơi truyền thống bông hoa cài tiền được tái thiết kế thành "hoa số hóa" qua VCB DigiBank. Mỗi tình huống trong tập đều xoay quanh một câu hỏi: "Khi xã hội thay đổi, một nghi thức đẹp sẽ đi về đâu?"</p>
-  </div>
-
-  <div class="img-ph img-ph--wide">
-    <div class="ph-icon">&#128247;</div>
-    <div class="ph-label">Hình minh họa cần chèn</div>
-    <div class="ph-desc">Visual concept chủ đạo của tập: mockup/ảnh dựng bữa tối Nhã nhạc trên thuyền Rồng sông Hương (ánh đèn vàng, không gian hoàng cung, dàn cast Quán Nhà Haha) — dùng làm hình hero cho treatment.</div>
-  </div>
-
-  <div class="tag-grid">
-    <div class="tag-box">Situation Design</div>
-    <div class="tag-box">Unscripted Format</div>
-    <div class="tag-box">Sponsor Integration</div>
-    <div class="tag-box">Văn hóa Việt</div>
-  </div>
-</section>
-
-<!-- ================= PAGE 4 — PROCESS BREAKDOWN ================= -->
-<section class="page">
-  <h2 class="heading-md">Quy trình phát triển treatment</h2>
-
-  <div class="img-ph img-ph--small">
-    <div class="ph-icon">&#128247;</div>
-    <div class="ph-label">Hình minh họa cần chèn</div>
-    <div class="ph-desc">Moodboard nghiên cứu: ẩm thực cung đình Huế, nhạc cụ Nhã nhạc, kiến trúc thuyền Rồng (3-4 ảnh tham khảo ghép lại).</div>
-  </div>
-
-  <div class="step">
-    <div class="step-num">01</div>
-    <div class="step-content">
-      <h3>Nghiên cứu &amp; Insight</h3>
-      <p>Phân tích DNA chương trình Quán Nhà Haha: format ăn uống + talkshow, tông giọng hài hước nhưng chân thật, đối tượng khán giả 18-35. Nghiên cứu ẩm thực cung đình Huế và vai trò của Nhã nhạc như di sản văn hóa phi vật thể UNESCO. Câu hỏi dẫn dắt: làm sao để di sản không chỉ là backdrop mà trở thành chất xúc tác cho câu chuyện?</p>
-    </div>
-  </div>
-
-  <div class="step">
-    <div class="step-num">02</div>
-    <div class="step-content">
-      <h3>Concept &amp; Format Design</h3>
-      <p>"Bếp Cung Đình" — dàn cast không chỉ nấu ăn mà phải trải nghiệm toàn bộ nghi thức: từ cách sắp mâm theo chuẩn hoàng cung, đến việc nghe Nhã nhạc live trên thuyền Rồng. Mỗi hoạt động được thiết kế để tạo phản ứng tự nhiên — hài hước, bất ngờ, hoặc cảm xúc — không cần scripted dialog.</p>
-    </div>
-  </div>
-
-  <div class="step">
-    <div class="step-num">03</div>
-    <div class="step-content">
-      <h3>Outline &amp; Flow chương trình</h3>
-      <p>Kịch bản ba hồi: Hồi 1 — Arrival &amp; Discovery (cast lên thuyền, khám phá bếp cung đình); Hồi 2 — Challenge &amp; Chaos (nấu ăn theo chuẩn hoàng gia với nguyên liệu xa lạ); Hồi 3 — Ritual &amp; Reflection (bữa tối Nhã nhạc, tặng bông hoa cài tiền số hóa). Mỗi hồi có turning point rõ ràng.</p>
-    </div>
-  </div>
-
-  <div class="step">
-    <div class="step-num">04</div>
-    <div class="step-content">
-      <h3>Cast Breakdown &amp; Bộ câu hỏi</h3>
-      <p>Phân tích vai trò từng thành viên cast dựa trên dynamic nhóm: ai sẽ phản ứng mạnh với trải nghiệm mới, ai sẽ tạo comic relief, ai sẽ mang đến khoảnh khắc sâu lắng. Bộ câu hỏi dẫn dắt được thiết kế theo tầng — từ câu hỏi nhẹ (ấn tượng đầu tiên) đến câu hỏi sâu (ký ức về gia đình, về truyền thống).</p>
-    </div>
-  </div>
-
-  <div class="step">
-    <div class="step-num">05</div>
-    <div class="step-content">
-      <h3>Tích hợp Sponsor &amp; Clip-able Moments</h3>
-      <p>VCB DigiBank được gắn vào tự nhiên qua chi tiết "hoa số hóa" — một điểm chạm giữa kinh tế di sản, giao thoa giữa gìn giữ truyền thống với công cụ thanh toán số hiện đại. Xác định 3-4 khoảnh khắc có thể cắt thành clips ngắn cho TikTok/Reels: reaction khi thấy bếp cung đình, khoảnh khắc tặng hoa, và cuộc trò chuyện trên thuyền đêm.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ================= PAGE 5 — PROJECT CONCLUSION ================= -->
-<section class="page">
-  <p class="pull-quote" style="font-size:18pt; line-height:1.5; margin-bottom:8mm;">
-    <span class="quote-mark">&#8220;</span>Tôi tin một episode treatment tốt không chỉ là outline — nó là bản thiết kế trải nghiệm. Mọi tình huống được đặt ra để khán giả cảm nhận điều gì đó thật, ngay cả khi format là unscripted.<span class="quote-mark">&#8221;</span>
-  </p>
-
-  <div class="body-text">
-    <p>Dự án này thể hiện cách tôi sẽ tiếp cận mỗi tập talkshow tại Zeit: bắt đầu từ nghiên cứu, thiết kế tình huống trước khi viết script, tích hợp sponsor một cách hữu cơ, và luôn tư duy về clip-able moments cho đa nền tảng.</p>
-  </div>
-
-  <div class="img-ph img-ph--med">
-    <div class="ph-icon">&#128247;</div>
-    <div class="ph-label">Hình minh họa cần chèn</div>
-    <div class="ph-desc">Visual khoảnh khắc cao điểm của tập: cảnh tặng "hoa số hóa" trên thuyền Rồng về đêm (mockup/ảnh dựng), hoặc trích trang treatment hoàn chỉnh.</div>
-  </div>
-
-  <div class="body-text">
-    <p style="font-style:italic; color:var(--text-secondary);">Treatment đầy đủ với hình ảnh minh họa nằm trong Story Architect Portfolio đính kèm — trang 04-05.</p>
-  </div>
-</section>
-
-<!-- ================= PAGE 6 — MULTI-FORMAT WRITING I ================= -->
-<section class="page">
-  <div class="eyebrow">Thế mạnh I</div>
-  <h2 class="heading-lg">Biên kịch đa định dạng</h2>
-  <p class="subtitle">Mỗi format đòi hỏi một framework kể chuyện khác — đây là khả năng thích ứng của tôi.</p>
-
-  <div class="body-text" style="margin-bottom:6mm;">
-    <p>Ai cũng có thể đề xuất ý tưởng, nhưng liệu họ có thể biến ý tưởng thành mạch truyện hoàn chỉnh? Từ TVC 30 giây cho thương hiệu lớn, đến phim ngắn độc lập, đến podcast long-form — mỗi loại hình đòi hỏi cách kể khác nhau. Những dự án dưới đây chứng minh cho khả năng đó.</p>
-  </div>
-
-  <div class="card">
-    <div class="card-eyebrow">TVC Storyboard · Thương hiệu</div>
-    <hr class="card-rule">
-    <div class="card-title">VinFast · MAGGI Tết 2026 · Hapacol · BUV</div>
-    <div class="card-meta">Script Writer · Storyboard · 2024-2025</div>
-    <p class="card-body">Viết kịch bản và minh họa storyboard TVC cho 4 chiến dịch thương mại, vượt qua 4 vòng chỉnh sửa từ brief đến storyboard hoàn thiện. Mỗi TVC yêu cầu tóm gọn câu chuyện thương hiệu trong 30 giây — kỹ năng nén thông điệp này trực tiếp áp dụng được khi viết segment hooks cho talkshow.</p>
-    <div class="card-media">
-      <div class="img-ph img-ph--small">
-        <div class="ph-icon">&#128247;</div>
-        <div class="ph-label">Hình minh họa cần chèn</div>
-        <div class="ph-desc">Frame storyboard hoặc ảnh chụp màn hình TVC đã sản xuất (VinFast / MAGGI / Hapacol / BUV).</div>
+    <div class="hero-right">
+      <div class="hero-photo-ph">
+        <div class="ico">📷</div>
+        <div class="txt">ẢNH CHÂN DUNG<br>Vertical, professional<br>background đơn giản</div>
       </div>
     </div>
   </div>
 
-  <div class="card">
-    <div class="card-eyebrow">Phim ngắn · Giải Nhất</div>
-    <hr class="card-rule">
-    <div class="card-title">"Mùa Hạ Của Chúng Tôi"</div>
-    <div class="card-meta">Biên kịch · Đạo diễn · Dựng phim · 2022</div>
-    <p class="card-body">Phim ngắn đạt Giải Nhất — đảm nhận toàn bộ vai trò: viết kịch bản, đạo diễn trên set, và dựng phim hậu kỳ. Đây là lần đầu tôi trải nghiệm toàn bộ pipeline sản xuất từ script đến final cut — và hiểu rằng kịch bản phải survive được trên trường quay.</p>
-    <div class="card-media">
-      <div class="img-ph img-ph--small">
-        <div class="ph-icon">&#128247;</div>
-        <div class="ph-label">Hình minh họa cần chèn</div>
-        <div class="ph-desc">Poster hoặc still frame của phim ngắn "Mùa Hạ Của Chúng Tôi".</div>
+  <div class="hero-bar">
+    <a href="mailto:felixphan.contact@gmail.com"><span class="lbl">Email</span> felixphan.contact@gmail.com</a>
+    <a href="tel:+84936647704"><span class="lbl">Phone</span> +84 936 647 704</a>
+    <a href="https://linkedin.com/in/felixphan" target="_blank" rel="noopener"><span class="lbl">LinkedIn</span> linkedin.com/in/felixphan</a>
+    <span><span class="lbl">Base</span> Hồ Chí Minh City · 2026</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="gioi-thieu">
+  <div class="container">
+    <div class="about-grid">
+
+      <div class="sticky-col reveal from-left">
+        <div class="eyebrow" style="color:var(--burgundy);margin-bottom:22px;">Về tôi</div>
+        <p class="big-quote">
+          &#8220;Một tập talkshow thường được nhớ không phải vì câu hỏi hay, mà vì khoảnh khắc khách mời nói điều họ chưa từng nói ở đâu trước đó. Khoảnh khắc đó không ngẫu nhiên. Nó được thiết kế.&#8221;
+        </p>
+        <div class="callout">
+          Portfolio này được xây riêng cho vị trí Biên tập viên tại Zeit Media. Mỗi phần trả lời câu hỏi: <em>"Người này có thể phát triển kịch bản talkshow từ ý tưởng đến on-air không?"</em>
+        </div>
       </div>
+
+      <div class="about-body reveal">
+        <p>Tôi là <strong>Felix Phan</strong>, ứng viên song bằng Truyền thông (RMIT) và Quản trị Kinh doanh (NEU), sẵn sàng làm việc full-time.</p>
+        <p>Tôi tự gọi mình là Story Architect: không phải vì thích danh hiệu đẹp, mà vì đó là cách tôi tiếp cận mọi kịch bản. Không bắt đầu từ câu hỏi, mà bắt đầu từ tình huống. Ai là người này thật sự? Điều gì sẽ khiến họ không thể không nói thật? Format nào sẽ dẫn người xem đến khoảnh khắc đó một cách tự nhiên nhất?</p>
+        <p>Tôi có kinh nghiệm viết kịch bản đa định dạng cho hơn 10 thương hiệu (VinFast, MAGGI, Hapacol, PNJ, BUV), từng đạt Giải Nhất cuộc thi phim ngắn với vai trò biên kịch kiêm đạo diễn, và đã điều phối sản xuất trực tiếp trên trường quay cho các campaign thương mại.</p>
+
+        <div class="stats-row reveal">
+          <div class="stat-box">
+            <div class="stat-num"><span class="counter" data-target="10">0</span>+</div>
+            <div class="stat-lbl">Thương hiệu<br>đã hợp tác</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">🥇</div>
+            <div class="stat-lbl">Giải Nhất<br>Phim ngắn</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num"><span class="counter" data-target="300">0</span>+</div>
+            <div class="stat-lbl">Khán giả tại<br>Triển lãm RMIT</div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- ================= PAGE 7 — MULTI-FORMAT WRITING II ================= -->
-<section class="page">
-  <div class="card">
-    <div class="card-eyebrow">Phim ngắn · Brand Storytelling</div>
-    <hr class="card-rule">
-    <div class="card-title">PNJ – Phim ngắn Mùa Cưới 2024</div>
-    <div class="card-meta">Script Writer · 2024</div>
-    <p class="card-body">Viết kịch bản phim ngắn cho mùa cưới 2024 của PNJ — storytelling cảm xúc cho thương hiệu trang sức. Format này đòi hỏi cân bằng giữa câu chuyện chân thật và thông điệp thương mại, tương tự cách talkshow cần cân bằng giữa giải trí và sponsor messaging.</p>
-    <div class="card-media">
-      <div class="img-ph img-ph--small">
-        <div class="ph-icon">&#128247;</div>
-        <div class="ph-label">Hình minh họa cần chèn</div>
-        <div class="ph-desc">Still frame từ phim ngắn PNJ Mùa Cưới 2024.</div>
+<!-- FEATURED PROJECT -->
+<section id="du-an">
+  <div class="du-an-glow"></div>
+  <div class="container">
+
+    <div class="proj-top">
+      <div class="reveal">
+        <div class="eyebrow">Dự án sáng tạo cá nhân · Episode Treatment</div>
+        <h2 class="proj-title">Bếp Nhà Haha<br>Gặp Bếp Cung Đình</h2>
+        <p class="proj-sub">Treatment đề xuất cho một tập giả tưởng trong chặng Huế của Quán Nhà Haha</p>
+        <div class="proj-body">
+          <p>Để chứng minh quy trình làm việc với nội dung talkshow, tôi tự chọn một show đang phát sóng, Quán Nhà Haha, và phát triển đầy đủ treatment cho một tập giả tưởng. Không phải bài tập học thuật. Đây là cách tôi tiếp cận mọi kịch bản: nghiên cứu trước, thiết kế tình huống, rồi viết.</p>
+          <p>Ý tưởng lõi: Đưa dàn cast vào bữa tối Nhã nhạc cung đình trên thuyền Rồng sông Hương, nơi truyền thống bông hoa cài tiền được tái thiết kế thành "hoa số hóa" qua VCB DigiBank. Câu hỏi xuyên suốt: <em>Khi xã hội thay đổi, một nghi thức đẹp sẽ đi về đâu?</em></p>
+        </div>
+        <div class="proj-tags">
+          <span class="tag">Situation Design</span>
+          <span class="tag">Unscripted Format</span>
+          <span class="tag">Sponsor Integration</span>
+          <span class="tag">Văn hóa Việt</span>
+        </div>
+      </div>
+      <div class="reveal from-right">
+        <div class="proj-img-ph">
+          <div class="ico">📷</div>
+          <div class="lbl">Hình minh họa cần chèn</div>
+          <div class="desc">Visual concept: mockup bữa tối Nhã nhạc trên thuyền Rồng sông Hương, ánh đèn vàng, không gian hoàng cung, dàn cast Quán Nhà Haha</div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="card">
-    <div class="card-eyebrow">Podcast · Long-form</div>
-    <hr class="card-rule">
-    <div class="card-title">Podcast Series – Sustainable Energy</div>
-    <div class="card-meta">Script Writer · Producer · 2024</div>
-    <p class="card-body">Viết kịch bản và thực hiện lồng tiếng cho podcast học thuật — format long-form 40+ phút. Kỹ năng duy trì mạch truyện qua nhiều segment dài áp dụng trực tiếp cho việc viết flow talkshow.</p>
-    <div class="card-media">
-      <div class="img-ph img-ph--small">
-        <div class="ph-icon">&#128247;</div>
-        <div class="ph-label">Hình minh họa cần chèn</div>
-        <div class="ph-desc">Cover art của podcast series "Sustainable Energy".</div>
+    <hr class="proj-rule">
+
+    <h3 class="steps-heading reveal">Quy trình phát triển treatment</h3>
+    <div class="steps-grid">
+      <div class="step-card reveal" style="--d:0s">
+        <div class="step-n">01</div>
+        <div class="step-h">Nghiên cứu &amp; Insight</div>
+        <div class="step-p">Phân tích DNA chương trình: format ăn uống + talkshow, tông giọng hài hước chân thật, đối tượng 18-35. Nghiên cứu ẩm thực cung đình Huế và Nhã nhạc như di sản UNESCO.</div>
+      </div>
+      <div class="step-card reveal" style="--d:.1s">
+        <div class="step-n">02</div>
+        <div class="step-h">Concept &amp; Format</div>
+        <div class="step-p">Dàn cast trải nghiệm toàn bộ nghi thức: sắp mâm hoàng cung, nghe Nhã nhạc live trên thuyền. Mỗi hoạt động được thiết kế để tạo phản ứng tự nhiên, không cần scripted dialog.</div>
+      </div>
+      <div class="step-card reveal" style="--d:.2s">
+        <div class="step-n">03</div>
+        <div class="step-h">Outline &amp; Flow</div>
+        <div class="step-p">Ba hồi: Hồi 1: Arrival &amp; Discovery. Hồi 2: Challenge &amp; Chaos. Hồi 3: Ritual &amp; Reflection. Mỗi hồi có turning point và khoảnh khắc cao trào rõ ràng.</div>
+      </div>
+      <div class="step-card reveal" style="--d:.3s">
+        <div class="step-n">04</div>
+        <div class="step-h">Cast &amp; Câu hỏi</div>
+        <div class="step-p">Phân tích vai trò từng thành viên: ai phản ứng mạnh, ai tạo comic relief, ai mang khoảnh khắc sâu lắng. Bộ câu hỏi thiết kế theo tầng: từ nhẹ đến sâu.</div>
+      </div>
+      <div class="step-card reveal" style="--d:.4s">
+        <div class="step-n">05</div>
+        <div class="step-h">Sponsor &amp; Clip-able</div>
+        <div class="step-p">VCB DigiBank gắn tự nhiên qua chi tiết "hoa số hóa". Xác định 3-4 khoảnh khắc clip cho TikTok/Reels: reaction bếp cung đình, tặng hoa, trò chuyện đêm sông Hương.</div>
       </div>
     </div>
-  </div>
 
-  <p style="font-style:italic; color:var(--text-secondary); font-size:10pt; margin-top:4mm;">Danh sách đầy đủ với visual minh họa — xem Story Architect Portfolio đính kèm, mục I (trang 06-09).</p>
+    <div class="proj-end reveal">
+      <p class="proj-pq">&#8220;Một episode treatment tốt không chỉ là outline: đó là bản thiết kế trải nghiệm. Mọi tình huống được đặt ra để khán giả cảm nhận điều gì đó thật, ngay cả khi format là unscripted.&#8221;</p>
+      <div class="proj-et">
+        <p>Dự án này thể hiện cách tôi sẽ tiếp cận mỗi tập talkshow tại Zeit: bắt đầu từ nghiên cứu, thiết kế tình huống trước khi viết script, tích hợp sponsor một cách hữu cơ, và luôn tư duy về clip-able moments cho đa nền tảng.</p>
+        <p class="note">Treatment đầy đủ nằm trong Story Architect Portfolio đính kèm, trang 04-05.</p>
+      </div>
+    </div>
+
+  </div>
 </section>
 
-<!-- ================= PAGE 8 — RESEARCH & INSIGHT I ================= -->
-<section class="page">
-  <div class="eyebrow">Thế mạnh II</div>
-  <h2 class="heading-lg">Nghiên cứu văn hóa &<br>Insight khán giả</h2>
-  <p class="subtitle">Trước khi viết một dòng kịch bản nào, tôi nghiên cứu — khán giả đang nói gì, thị trường đang thiếu gì, và văn hóa nào đang bị bỏ quên.</p>
-
-  <div class="body-text" style="margin-bottom:6mm;">
-    <p>Vị trí Biên tập viên tại Zeit yêu cầu "nghiên cứu xu hướng, thị trường và insight khán giả để đề xuất định hướng nội dung phù hợp." Đây chính xác là điều tôi đã làm — không chỉ trong lớp học, mà cho các thương hiệu thật, với dữ liệu thật.</p>
-  </div>
-
-  <div class="card">
-    <div class="card-eyebrow">Phân tích chương trình truyền hình</div>
-    <hr class="card-rule">
-    <div class="card-title">Gặp Nhau Cuối Năm — Critical Case Study</div>
-    <div class="card-meta">Researcher · Analyst · RMIT · 2023</div>
-    <p class="card-body">Phân tích cách chương trình truyền hình giải trí phê phán quyền lực dưới vỏ bọc hài hước, qua lý thuyết encoding-decoding của Stuart Hall. Trực tiếp relevant: hiểu cách talkshow sử dụng format giải trí để truyền tải thông điệp sâu hơn — chính xác là kỹ năng cần cho việc thiết kế concept talkshow có chiều sâu.</p>
-  </div>
-
-  <div class="card">
-    <div class="card-eyebrow">Nghiên cứu văn hóa đại chúng</div>
-    <hr class="card-rule">
-    <div class="card-title">Folk × Western Elements in V-Pop Music Videos</div>
-    <div class="card-meta">Co-Researcher · RMIT · 2024</div>
-    <p class="card-body">Phân tích cultural hybridity giữa dân ca Việt và Pop phương Tây trong MV V-Pop qua lăng kính vốn văn hóa Bourdieu. Khả năng nhận diện cách văn hóa truyền thống giao thoa với đương đại — là nền tảng để tìm góc khai thác mới cho nội dung talkshow.</p>
-    <div class="card-media">
-      <div class="img-ph img-ph--small">
-        <div class="ph-icon">&#128247;</div>
-        <div class="ph-label">Hình minh họa cần chèn</div>
-        <div class="ph-desc">Frame chụp từ một MV V-Pop tiêu biểu được phân tích trong nghiên cứu (folk × western hybridity).</div>
+<!-- BIÊN KỊCH -->
+<section id="bien-kich">
+  <div class="container">
+    <div class="sec-header reveal">
+      <div class="eyebrow">Thế mạnh I</div>
+      <h2 class="section-title" style="margin-top:14px;">Biên kịch đa định dạng</h2>
+      <p class="section-subtitle">Mỗi format đòi hỏi một framework kể chuyện khác.</p>
+      <p class="sec-intro">Từ TVC 30 giây cho thương hiệu lớn, đến phim ngắn độc lập, đến podcast long-form: mỗi loại hình đòi hỏi cách kể khác nhau. Những dự án dưới đây chứng minh khả năng thích ứng đó.</p>
+    </div>
+    <div class="cards-grid">
+      <div class="card reveal" style="transition-delay:0s">
+        <div class="card-ey">TVC Storyboard · Thương hiệu</div>
+        <div class="card-title">VinFast · MAGGI · Hapacol · BUV</div>
+        <div class="card-meta">Script Writer, Storyboard · 2024-2025</div>
+        <div class="card-body">Viết kịch bản và minh họa storyboard TVC cho 4 chiến dịch thương mại, vượt qua 4 vòng chỉnh sửa từ brief đến storyboard hoàn thiện. Kỹ năng nén thông điệp trong 30 giây áp dụng trực tiếp khi viết segment hooks cho talkshow.</div>
+        <div class="card-ph"><div class="ico">📷</div><div class="lbl">Hình cần chèn</div><div class="desc">Frame storyboard hoặc screenshot TVC đã sản xuất</div></div>
       </div>
+      <div class="card reveal" style="transition-delay:.1s">
+        <div class="card-ey">Phim ngắn · Giải Nhất</div>
+        <div class="card-title">"Mùa Hạ Của Chúng Tôi"</div>
+        <div class="card-meta">Biên kịch, Đạo diễn, Dựng phim · 2022</div>
+        <div class="card-body">Phim ngắn đạt Giải Nhất, đảm nhận toàn bộ vai trò từ viết kịch bản, đạo diễn trên set, đến dựng phim hậu kỳ. Trải nghiệm toàn bộ pipeline sản xuất từ script đến final cut, hiểu rằng kịch bản phải survive được trên trường quay.</div>
+        <div class="card-ph"><div class="ico">📷</div><div class="lbl">Hình cần chèn</div><div class="desc">Poster hoặc still frame của phim ngắn</div></div>
+      </div>
+      <div class="card reveal" style="transition-delay:.2s">
+        <div class="card-ey">Phim ngắn · Brand Storytelling</div>
+        <div class="card-title">PNJ, Phim ngắn Mùa Cưới 2024</div>
+        <div class="card-meta">Script Writer · 2024</div>
+        <div class="card-body">Viết kịch bản phim ngắn cho mùa cưới 2024 của PNJ, storytelling cảm xúc cho thương hiệu trang sức. Format này đòi hỏi cân bằng giữa câu chuyện chân thật và thông điệp thương mại, tương tự cách talkshow cân bằng giải trí và sponsor messaging.</div>
+        <div class="card-ph"><div class="ico">📷</div><div class="lbl">Hình cần chèn</div><div class="desc">Still frame từ phim ngắn PNJ Mùa Cưới 2024</div></div>
+      </div>
+      <div class="card reveal" style="transition-delay:.3s">
+        <div class="card-ey">Podcast · Long-form</div>
+        <div class="card-title">Podcast Series: Sustainable Energy</div>
+        <div class="card-meta">Script Writer, Producer · 2024</div>
+        <div class="card-body">Viết kịch bản và thực hiện lồng tiếng cho podcast học thuật, format long-form 40+ phút. Kỹ năng duy trì mạch truyện qua nhiều segment dài áp dụng trực tiếp cho việc viết flow talkshow.</div>
+        <div class="card-ph"><div class="ico">📷</div><div class="lbl">Hình cần chèn</div><div class="desc">Cover art của podcast series</div></div>
+      </div>
+    </div>
+    <p class="sec-fn reveal">Danh sách đầy đủ với visual minh họa trong Story Architect Portfolio đính kèm, mục I (trang 06-09).</p>
+  </div>
+</section>
+
+<!-- NGHIÊN CỨU -->
+<section id="nghien-cuu">
+  <div class="container">
+    <div class="ngc-intro">
+      <div class="reveal from-left">
+        <div class="eyebrow" style="margin-bottom:18px;">Thế mạnh II</div>
+        <h2 class="section-title">Nghiên cứu<br>văn hóa &amp;<br>Insight khán giả</h2>
+        <p class="section-subtitle" style="margin-top:14px;">Trước khi viết một dòng kịch bản nào, tôi nghiên cứu.</p>
+      </div>
+      <div class="ngc-body reveal">
+        <p>Vị trí Biên tập viên tại Zeit yêu cầu <em>"nghiên cứu xu hướng, thị trường và insight khán giả để đề xuất định hướng nội dung phù hợp."</em> Đây chính xác là điều tôi đã làm, không chỉ trong lớp học, mà cho các thương hiệu thật, với dữ liệu thật.</p>
+        <p>Khán giả đang nói gì? Thị trường đang thiếu gì? Văn hóa nào đang bị bỏ quên? Ba câu hỏi đó dẫn dắt mọi dự án nghiên cứu của tôi.</p>
+      </div>
+    </div>
+    <div class="cards-grid">
+      <div class="card reveal" style="transition-delay:0s">
+        <div class="card-ey">Phân tích chương trình truyền hình</div>
+        <div class="card-title">Gặp Nhau Cuối Năm: Critical Case Study</div>
+        <div class="card-meta">Researcher, Analyst · RMIT · 2023</div>
+        <div class="card-body">Phân tích cách chương trình giải trí phê phán quyền lực dưới vỏ bọc hài hước, qua lý thuyết encoding-decoding của Stuart Hall. Nền tảng để thiết kế concept talkshow có chiều sâu.</div>
+      </div>
+      <div class="card reveal" style="transition-delay:.1s">
+        <div class="card-ey">Nghiên cứu văn hóa đại chúng</div>
+        <div class="card-title">Folk × Western Elements in V-Pop Music Videos</div>
+        <div class="card-meta">Co-Researcher · RMIT · 2024</div>
+        <div class="card-body">Phân tích cultural hybridity giữa dân ca Việt và Pop phương Tây trong MV V-Pop qua lăng kính vốn văn hóa Bourdieu. Nền tảng để tìm góc khai thác mới cho nội dung talkshow.</div>
+        <div class="card-ph"><div class="ico">📷</div><div class="lbl">Hình cần chèn</div><div class="desc">Frame từ một MV V-Pop được phân tích trong nghiên cứu</div></div>
+      </div>
+      <div class="card reveal" style="transition-delay:.2s">
+        <div class="card-ey">Social Listening &amp; Consumer Insight</div>
+        <div class="card-title">MAGGI: Competitive &amp; Consumer Analysis</div>
+        <div class="card-meta">Researcher · 2025</div>
+        <div class="card-body">Tự kéo dữ liệu từ Fanpage Karma, lập chart so sánh MAGGI và Barona: MAGGI tập trung sản phẩm, Barona thu hút bằng trải nghiệm. Đề xuất chiến dịch dựa trên khoảng cách keyword này.</div>
+        <div class="card-ph"><div class="ico">📊</div><div class="lbl">Chart cần chèn</div><div class="desc">Chart so sánh keyword/sentiment MAGGI vs. Barona</div></div>
+      </div>
+      <div class="card reveal" style="transition-delay:.3s">
+        <div class="card-ey">Nghiên cứu văn hóa &amp; xã hội</div>
+        <div class="card-title">Gender Equality Magazine + "Patriotic Rap as New Red Music"</div>
+        <div class="card-meta">Concept, Editorial, Research · 2023</div>
+        <div class="card-body">Hai dự án nghiên cứu văn hóa sâu: lên concept tạp chí bình đẳng giới với vai trò Creative Director, và đề xuất nghiên cứu nhạc rap yêu nước như người kế thừa nhạc đỏ thời chiến.</div>
+        <div class="card-ph"><div class="ico">📷</div><div class="lbl">Hình cần chèn</div><div class="desc">Mockup bìa Gender Equality Magazine</div></div>
+      </div>
+    </div>
+    <div class="bottom-pq reveal">
+      <p class="text">&#8220;Một câu chuyện tốt không nằm ở câu chữ. Nó nằm ở cách kịch bản hiểu con người, hiểu bối cảnh, hiểu những điều âm thầm nhưng thật sự quan trọng với một cộng đồng.&#8221;</p>
     </div>
   </div>
 </section>
 
-<!-- ================= PAGE 9 — RESEARCH & INSIGHT II ================= -->
-<section class="page">
-  <div class="card">
-    <div class="card-eyebrow">Social Listening & Consumer Insight</div>
-    <hr class="card-rule">
-    <div class="card-title">MAGGI – Competitive & Consumer Analysis</div>
-    <div class="card-meta">Researcher · 2025</div>
-    <p class="card-body">Phân tích nội dung social của MAGGI và đối thủ Barona — tự kéo dữ liệu từ Fanpage Karma, lập chart so sánh, thực hiện social listening và sentiment analysis. Phát hiện rằng content MAGGI tập trung vào sản phẩm ("cao cấp," "chuẩn vị") trong khi Barona thu hút engagement bằng trải nghiệm ("dễ," "ngon," "khám phá"). Đề xuất chiến dịch dựa trên khoảng cách keyword này.</p>
-    <div class="card-media">
-      <div class="img-ph img-ph--med">
-        <div class="ph-icon">&#128202;</div>
-        <div class="ph-label">Hình minh họa cần chèn</div>
-        <div class="ph-desc">Chart so sánh keyword/sentiment giữa MAGGI và Barona (export từ Fanpage Karma hoặc dựng lại biểu đồ).</div>
+<!-- SẢN XUẤT -->
+<section id="san-xuat">
+  <div class="container">
+    <div class="sec-header reveal">
+      <div class="eyebrow">Thế mạnh III</div>
+      <h2 class="section-title" style="margin-top:14px;">Kinh nghiệm sản xuất thực tế</h2>
+      <p class="section-subtitle">Không phải biên kịch chuộng bàn giấy.</p>
+      <p class="sec-intro">Vị trí tại Zeit yêu cầu <em>"theo sát quá trình tiền kỳ, ghi hình, hậu kỳ và phát hành; kiểm soát chất lượng nội dung, góp ý bản dựng."</em> Tôi đã có kinh nghiệm đó, trên set thật, với deadline thật.</p>
+    </div>
+    <div class="stats-banner reveal">
+      <div class="sb-stat"><div class="sb-num"><span class="counter" data-target="300">0</span>+</div><div class="sb-lbl">Khách tham quan<br>triển lãm</div></div>
+      <div class="sb-stat"><div class="sb-num"><span class="counter" data-target="34500">0</span>+</div><div class="sb-lbl">Lượt tương tác<br>social media</div></div>
+      <div class="sb-stat"><div class="sb-num"><span class="counter" data-target="7">0</span></div><div class="sb-lbl">Sự kiện doanh nghiệp<br>đã điều phối</div></div>
+      <div class="sb-stat"><div class="sb-num"><span class="counter" data-target="270">0</span>+</div><div class="sb-lbl">Người trong<br>đoàn lữ hành</div></div>
+    </div>
+    <div class="cards-grid">
+      <div class="card reveal" style="transition-delay:0s">
+        <div class="card-ey">On-set Production · Commercial Brands</div>
+        <div class="card-title">ForArt Film Production</div>
+        <div class="card-meta">Creative Intern · 3/2024 – 7/2024</div>
+        <div class="card-body">Điều phối trường quay cho 2 campaign thương hiệu (VinFast, TH true Milk): kiểm soát timeline, tracking source đầu ra trong toàn bộ các ngày ghi hình. Quản lý full production cycle cho chuỗi video Reels chiến dịch VinFast VF5 × Kim Joo Yung, từ pre-production đến final delivery.</div>
+        <div class="card-ph"><div class="ico">📷</div><div class="lbl">Hình cần chèn</div><div class="desc">Ảnh on-set tại ForArt Film Production</div></div>
+      </div>
+      <div class="card reveal" style="transition-delay:.1s">
+        <div class="card-ey">Live Production · Triển lãm tương tác</div>
+        <div class="card-title">RMIT Interactive Exhibition "Little Me"</div>
+        <div class="card-meta">Project Lead, Founder · 2023-2024</div>
+        <div class="card-body">Trưởng ban tổ chức triển lãm tương tác quy mô 300+ khách về sức khỏe tâm thần, từ concept, gọi vốn 18 triệu đồng, đến vận hành 3 ngày liên tục. Đạt 316 lượt tham quan và 34.500+ lượt tương tác trên social media.</div>
+        <div class="card-ph"><div class="ico">📷</div><div class="lbl">Hình cần chèn</div><div class="desc">Ảnh không gian triển lãm "Little Me" tại RMIT</div></div>
+      </div>
+      <div class="card reveal" style="transition-delay:.2s">
+        <div class="card-ey">Multi-platform Content</div>
+        <div class="card-title">RMIT Student Council: TikTok Content Planner</div>
+        <div class="card-meta">Media Planner, Content Creator · 2022-2023</div>
+        <div class="card-body">Đảm nhận vai trò Planner cho các kênh social của RMIT Student Council, tạo ra những video viral đầu tiên cho tổ chức trên TikTok. Tư duy đa nền tảng: mỗi sản phẩm phải hoạt động trên cả long-form (YouTube) lẫn short-form (TikTok, Reels).</div>
+        <div class="card-ph"><div class="ico">📷</div><div class="lbl">Hình cần chèn</div><div class="desc">Screenshot grid các video TikTok viral của RMIT Student Council</div></div>
+      </div>
+      <div class="card reveal" style="transition-delay:.3s">
+        <div class="card-ey">Event Coordination · Quy mô lớn</div>
+        <div class="card-title">MBE: Mien Bac Event</div>
+        <div class="card-meta">Trợ lý Giám đốc (Thực tập) · 2/2026 – 5/2026</div>
+        <div class="card-body">Triển khai logistics toàn diện cho 7 sự kiện doanh nghiệp (50-400 người). Điều phối lữ hành cho đoàn 270 người tại Hà Nội. Kinh nghiệm vận hành quy mô lớn áp dụng trực tiếp cho logistics ngày ghi hình talkshow.</div>
+        <div class="card-ph"><div class="ico">📷</div><div class="lbl">Hình cần chèn</div><div class="desc">Ảnh hiện trường sự kiện doanh nghiệp tại MBE</div></div>
       </div>
     </div>
-  </div>
-
-  <div class="card">
-    <div class="card-eyebrow">Nghiên cứu văn hóa & xã hội</div>
-    <hr class="card-rule">
-    <div class="card-title">Gender Equality Magazine + "Patriotic Rap as New Red Music"</div>
-    <div class="card-meta">Concept · Editorial · Research · 2023</div>
-    <p class="card-body">Hai dự án nghiên cứu văn hóa sâu: (1) Lên concept tạp chí về bình đẳng giới tại Việt Nam, giữ vai trò Creative Director; (2) Đề xuất nghiên cứu nhạc rap yêu nước như người kế thừa của nhạc đỏ thời chiến. Cả hai chứng minh khả năng đào sâu vào chất liệu văn hóa Việt — nền tảng để tìm câu chuyện cho talkshow.</p>
-    <div class="card-media">
-      <div class="img-ph img-ph--small">
-        <div class="ph-icon">&#128247;</div>
-        <div class="ph-label">Hình minh họa cần chèn</div>
-        <div class="ph-desc">Mockup trang bìa "Gender Equality Magazine" (concept Creative Director).</div>
-      </div>
+    <div class="san-pq reveal">
+      &#8220;Tôi tin trách nhiệm của một biên tập viên không kết thúc khi giao kịch bản. Nó kết thúc khi nội dung on-air đúng như thiết kế ban đầu.&#8221;
     </div>
   </div>
-
-  <p class="pull-quote" style="font-size:15pt; line-height:1.5; margin-top:8mm;">
-    <span class="quote-mark">&#8220;</span>Một câu chuyện tốt không nằm ở câu chữ. Nó nằm ở cách kịch bản hiểu con người, hiểu bối cảnh, hiểu những điều âm thầm nhưng thật sự quan trọng với một cộng đồng.<span class="quote-mark">&#8221;</span>
-  </p>
 </section>
 
-<!-- ================= PAGE 10 — PRODUCTION EXPERIENCE I ================= -->
-<section class="page">
-  <div class="eyebrow">Thế mạnh III</div>
-  <h2 class="heading-lg">Kinh nghiệm sản xuất<br>thực tế</h2>
-  <p class="subtitle">Tôi không phải biên kịch chuộng bàn giấy — kinh nghiệm của tôi gắn liền với trường quay và hiện trường sản xuất.</p>
-
-  <div class="body-text" style="margin-bottom:6mm;">
-    <p>Vị trí tại Zeit yêu cầu "theo sát quá trình tiền kỳ, ghi hình, hậu kỳ và phát hành; kiểm soát chất lượng nội dung, góp ý bản dựng." Tôi đã có kinh nghiệm đó — trên set thật, với deadline thật.</p>
-  </div>
-
-  <div class="card">
-    <div class="card-eyebrow">On-set Production · Commercial Brands</div>
-    <hr class="card-rule">
-    <div class="card-title">ForArt Film Production</div>
-    <div class="card-meta">Creative Intern · 3/2024 – 7/2024</div>
-    <p class="card-body">
-      • Điều phối trường quay cho 2 campaign thương hiệu (VinFast, TH true Milk): kiểm soát timeline, tracking source đầu ra trong toàn bộ các ngày ghi hình.<br>
-      • Quản lý full production cycle cho chuỗi video Reels trong chiến dịch VinFast VF5 × Kim Joo Yung: từ pre-production structure, shoot-day coordination, đến final delivery.<br>
-      • Viết kịch bản TVC cho 3 chiến dịch thương mại, vượt qua 4 vòng chỉnh sửa từ brief đến storyboard — đảm bảo scope không bị trôi qua production.
-    </p>
-    <div class="card-media">
-      <div class="img-ph img-ph--med">
-        <div class="ph-icon">&#128247;</div>
-        <div class="ph-label">Hình minh họa cần chèn</div>
-        <div class="ph-desc">Ảnh on-set khi điều phối trường quay cho campaign VinFast hoặc TH true Milk tại ForArt Film Production.</div>
+<!-- CONTACT -->
+<section id="lien-he">
+  <div class="ct-bg"></div>
+  <div class="container">
+    <div class="ct-grid">
+      <div class="reveal from-left">
+        <div class="eyebrow ct-ey">Liên hệ · Contact</div>
+        <h2 class="ct-h">Kết nối với<br>Felix Phan</h2>
+        <p class="ct-q">&#8220;Tôi muốn được cùng Zeit xây những chương trình để lại điều gì đó cho người xem, không chỉ để xem, mà để ngẫm, để bàn luận, và để ghi nhớ.&#8221;</p>
+        <div class="avail-badge">
+          <div class="avail-dot"></div>
+          <span class="avail-txt">Full-time · Sẵn sàng ngay lập tức</span>
+        </div>
       </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-eyebrow">Live Production · Triển lãm tương tác</div>
-    <hr class="card-rule">
-    <div class="card-title">RMIT Interactive Exhibition · "Little Me"</div>
-    <div class="card-meta">Project Lead · Founder · 2023-2024</div>
-    <p class="card-body">Trưởng ban tổ chức triển lãm tương tác quy mô 300+ khách tham dự về chủ đề sức khỏe tâm thần — từ concept, gọi vốn 18 triệu đồng, đến vận hành 3 ngày liên tục. Đạt 316 lượt tham quan và 34.500+ lượt tương tác trên social media. Kinh nghiệm quản lý live production quy mô lớn dưới áp lực timeline chặt.</p>
-    <div class="card-media">
-      <div class="img-ph img-ph--small">
-        <div class="ph-icon">&#128247;</div>
-        <div class="ph-label">Hình minh họa cần chèn</div>
-        <div class="ph-desc">Ảnh không gian/khách tham quan triển lãm "Little Me" tại RMIT.</div>
+      <div class="reveal from-right">
+        <div class="ct-rows">
+          <div class="ct-row"><div class="ct-lbl">Email</div><div class="ct-val"><a href="mailto:felixphan.contact@gmail.com">felixphan.contact@gmail.com</a></div></div>
+          <div class="ct-row"><div class="ct-lbl">Phone</div><div class="ct-val"><a href="tel:+84936647704">+84 936 647 704</a></div></div>
+          <div class="ct-row"><div class="ct-lbl">LinkedIn</div><div class="ct-val"><a href="https://linkedin.com/in/felixphan" target="_blank" rel="noopener">linkedin.com/in/felixphan</a></div></div>
+          <div class="ct-row"><div class="ct-lbl">Base</div><div class="ct-val">Hồ Chí Minh City · Vietnam</div></div>
+        </div>
+        <p class="ct-fn">Đính kèm: CV · Story Architect Portfolio (PDF)</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= PAGE 11 — PRODUCTION EXPERIENCE II ================= -->
-<section class="page">
-  <div class="card">
-    <div class="card-eyebrow">Multi-platform Content</div>
-    <hr class="card-rule">
-    <div class="card-title">RMIT Student Council – TikTok Content Planner</div>
-    <div class="card-meta">Media Planner · Content Creator · 2022-2023</div>
-    <p class="card-body">Đảm nhận vai trò Planner cho các kênh social của RMIT Student Council — tạo ra những video viral đầu tiên cho tổ chức trên TikTok. Kinh nghiệm tư duy nội dung đa nền tảng: mỗi sản phẩm phải hoạt động trên cả long-form (YouTube) và short-form (TikTok, Reels) — đúng với cách team Social Content tại Zeit cần vận hành.</p>
-    <div class="card-media">
-      <div class="img-ph img-ph--small">
-        <div class="ph-icon">&#128247;</div>
-        <div class="ph-label">Hình minh họa cần chèn</div>
-        <div class="ph-desc">Screenshot grid các video TikTok viral của RMIT Student Council.</div>
-      </div>
-    </div>
-  </div>
+<script>
+// NAV scroll + active highlight
+const nav = document.getElementById('nav');
+const navAs = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 80);
+}, { passive: true });
 
-  <div class="card">
-    <div class="card-eyebrow">Event Coordination · Quy mô lớn</div>
-    <hr class="card-rule">
-    <div class="card-title">MBE – Mien Bac Event</div>
-    <div class="card-meta">Trợ lý Giám đốc (Thực tập) · 2/2026 – 5/2026</div>
-    <p class="card-body">Triển khai logistics toàn diện cho 7 sự kiện doanh nghiệp (50-400 người tham dự). Điều phối lữ hành cho sự kiện du lịch doanh nghiệp gồm 270 người tại Hà Nội. Kinh nghiệm vận hành sự kiện quy mô lớn — áp dụng trực tiếp cho việc điều phối logistics trước và trong ngày ghi hình talkshow.</p>
-    <div class="card-media">
-      <div class="img-ph img-ph--small">
-        <div class="ph-icon">&#128247;</div>
-        <div class="ph-label">Hình minh họa cần chèn</div>
-        <div class="ph-desc">Ảnh hiện trường một sự kiện doanh nghiệp do MBE tổ chức.</div>
-      </div>
-    </div>
-  </div>
+const secs = document.querySelectorAll('section[id]');
+new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navAs.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+    }
+  });
+}, { threshold: 0.3 }).observe(document.querySelector('section[id]'));
 
-  <p class="pull-quote" style="font-size:14pt; line-height:1.5; margin-top:8mm;">
-    <span class="quote-mark">&#8220;</span>Tôi tin trách nhiệm của một biên tập viên không kết thúc khi giao kịch bản. Nó kết thúc khi nội dung on-air đúng như thiết kế ban đầu.<span class="quote-mark">&#8221;</span>
-  </p>
-</section>
+new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navAs.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+    }
+  });
+}, { threshold: 0.3, rootMargin: '0px 0px -50% 0px' }).observe.apply(
+  new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting)
+        navAs.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+    });
+  }, { threshold: 0.35 }),
+  Array.from(secs)
+);
 
-<!-- ================= PAGE 12 — CLOSING ================= -->
-<section class="page closing">
-  <div class="eyebrow">Liên hệ · Contact</div>
-  <h2 class="closing-heading">Kết nối với<br>Felix Phan</h2>
+// Fix: observe all sections for nav
+const navObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting)
+      navAs.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+  });
+}, { threshold: 0.4 });
+secs.forEach(s => navObserver.observe(s));
 
-  <p class="pull-quote" style="font-size:14pt; line-height:1.5;">
-    <span class="quote-mark">&#8220;</span>Tôi muốn được cùng Zeit xây những chương trình để lại điều gì đó cho người xem — không chỉ để xem, mà để ngẫm, để bàn luận, và để ghi nhớ.<span class="quote-mark">&#8221;</span>
-  </p>
+// Scroll reveal
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('active');
+      ro.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
 
-  <div class="contact-list">
-    <div class="contact-row">
-      <div class="contact-label">EMAIL</div>
-      <div class="contact-value"><a href="mailto:felixphan.contact@gmail.com">felixphan.contact@gmail.com</a></div>
-    </div>
-    <div class="contact-row">
-      <div class="contact-label">PHONE</div>
-      <div class="contact-value"><a href="tel:+84936647704">+84 936 647 704</a></div>
-    </div>
-    <div class="contact-row">
-      <div class="contact-label">LINKEDIN</div>
-      <div class="contact-value"><a href="https://linkedin.com/in/felixphan">linkedin.com/in/felixphan</a></div>
-    </div>
-    <div class="contact-row">
-      <div class="contact-label">BASE</div>
-      <div class="contact-value">Hồ Chí Minh City · Vietnam</div>
-    </div>
-    <div class="contact-row">
-      <div class="contact-label">AVAILABLE</div>
-      <div class="contact-value">Full-time · Ngay lập tức</div>
-    </div>
-  </div>
+// Stagger step-cards
+document.querySelectorAll('.step-card').forEach((c, i) => {
+  c.style.transitionDelay = (i * 0.08) + 's';
+});
 
-  <div class="closing-note">Đính kèm: CV · Story Architect Portfolio (PDF)</div>
-</section>
+// Counters
+function runCounter(el) {
+  const t = parseInt(el.dataset.target, 10);
+  const dur = 1400;
+  const t0 = performance.now();
+  (function tick(now) {
+    const p = Math.min((now - t0) / dur, 1);
+    const e = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(e * t).toLocaleString();
+    if (p < 1) requestAnimationFrame(tick);
+    else el.textContent = t.toLocaleString();
+  })(performance.now());
+}
+new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.counter').forEach(runCounter);
+    }
+  });
+}, { threshold: 0.5 }).observe(document.querySelector('.stats-row') || document.body);
 
+new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.counter').forEach(runCounter);
+    }
+  });
+}, { threshold: 0.5 }).observe(document.querySelector('.stats-banner') || document.body);
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', ev => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (!t) return;
+    ev.preventDefault();
+    window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 60, behavior: 'smooth' });
+  });
+});
+</script>
 </body>
 </html>
